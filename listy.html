@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#233c37"><title>Atlas Asterionu</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eeeee4;color:#233c37;font:16px/1.45 "Segoe UI",sans-serif}header,footer{padding:12px clamp(16px,4vw,72px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}h1{font:normal clamp(26px,4vw,44px)/1.15 Georgia,serif;margin:0}nav,.zoom{display:flex;align-items:center;gap:6px;flex-wrap:wrap}a{color:inherit}nav a,button{border:1px solid #aeb5a4;border-radius:4px;color:#243a34;background:#f5f5ed;font:inherit;text-decoration:none;padding:6px 12px;cursor:pointer}nav a[aria-current=page]{background:#233c37;color:white;border-color:#233c37}.toolbar{display:flex;align-items:center;justify-content:space-between;padding:8px clamp(16px,4vw,72px);background:#e2e6d8;border-block:1px solid #bfc6b6;gap:10px}.zoom button{min-height:36px}#frame{height:72vh;height:72svh;overflow:auto;background:#d4dbcf;text-align:center}#sheet{display:block;margin:0 auto}footer{font-size:14px}.source{margin:0}button:focus-visible,a:focus-visible{outline:3px solid #98612a}
+</style></head>
+<body><header><h1>Atlas Asterionu</h1><a href="index.html">Interaktivní mapa Tary</a><nav aria-label="Mapové listy"><a href="#tara">Tara</a><a href="#dalavy">Dálavy</a><a href="#lendor">Lendor</a></nav></header>
+<main><div class="toolbar"><strong id="label">Tara</strong><div class="zoom"><button type="button" id="minus" aria-label="Oddálit">−</button><button type="button" id="fit">Celý list</button><button type="button" id="plus" aria-label="Přiblížit">+</button></div></div><div id="frame" tabindex="0" aria-label="Mapový list"><img id="sheet" alt="Tara" src="mapy/tara.jpg"></div></main>
+<footer><p class="source">Mapy Tara, Dálavy a Lendor nakreslila <strong>Jana Žižková</strong>. <a href="https://asterionrpg.cz/index.php/mapy.html">Katalog původních map</a></p><a id="original" href="mapy/tara.jpg">Otevřít v původním rozlišení</a></footer>
+<script>
+const sheets={tara:'Tara',dalavy:'Dálavy',lendor:'Lendor'};
+const frame=document.querySelector('#frame'),img=document.querySelector('#sheet');let scale=1;
+function resize(){if(!img.complete||!img.naturalWidth)return;const n=Math.min(frame.clientWidth/img.naturalWidth,frame.clientHeight/img.naturalHeight);img.style.width=Math.max(1,Math.round(img.naturalWidth*n*scale))+'px'}
+function zoom(factor){const x=(frame.scrollLeft+frame.clientWidth/2)/(img.clientWidth||1),y=(frame.scrollTop+frame.clientHeight/2)/(img.clientHeight||1);scale=Math.min(12,Math.max(1,scale*factor));resize();frame.scrollLeft=x*img.clientWidth-frame.clientWidth/2;frame.scrollTop=y*img.clientHeight-frame.clientHeight/2}
+function select(){const hash=location.hash.slice(1),key=Object.hasOwn(sheets,hash)?hash:'tara';scale=1;img.onload=resize;img.src='mapy/'+key+'.jpg';img.alt=sheets[key];document.querySelector('#label').textContent=sheets[key];document.querySelector('#original').href=img.src;document.querySelectorAll('nav a').forEach(a=>{if(a.hash==='#'+key)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});frame.scrollTo(0,0);resize()}
+document.querySelector('#plus').onclick=()=>zoom(1.6);document.querySelector('#minus').onclick=()=>zoom(1/1.6);document.querySelector('#fit').onclick=()=>{scale=1;resize();frame.scrollTo(0,0)};addEventListener('resize',resize);addEventListener('hashchange',select);select();
+</script></body></html>
