@@ -131,8 +131,7 @@ function reliefVectors(id,key,sheet){
 function styledImage(group,id,box,pixelsPerUnit){
   let image=group.querySelector("img[data-styled]");
   if(!image){image=new Image();image.alt="";image.draggable=false;group.append(image);}
-  const level=Math.min(11,Math.max(0,Math.round(Math.log2(pixelsPerUnit))));
-  const src="dalavsky/"+id+".svg"+(level?"#z"+level:"");
+  const src="dalavsky/"+id+".svg?v=20261110b";
   if(image.getAttribute("src")!==src){image.dataset.styled=id;image.src=src;}
   Object.assign(image.style,box);
 }
@@ -193,8 +192,7 @@ function drawJoins(container){
     svg.style.zIndex=chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
     if(styled){
       const ground=svg.querySelector("g > image");
-      const level=Math.min(11,Math.max(0,Math.round(Math.log2(state.scale/j.d))));
-      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg"+(level?"#z"+level:""));
+      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261110b");
     }
     svg.setAttribute("viewBox",[(left-j.x)*j.d,(top-j.y)*j.d,map.clientWidth*scale,map.clientHeight*scale].join(" "));
   }
@@ -236,7 +234,9 @@ function regionalTiles(state,container,map,project){
     Object.assign(group.style,{left:x+"px",top:y+"px",width:sw+"px",height:sh+"px",
       clipPath:"polygon("+((styled && window.DALAVSKE_CLIPS?.[key]) || area.clip).map(([a,b])=>(100*a/sheet.w)+"% "+(100*b/sheet.h)+"%").join(",")+")",
       transformOrigin:"0 0",transform:"matrix("+basis.join(",")+",0,0)",
-      zIndex:Math.round(-Math.log(k)*10)+40+(chosen && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
+      // Stíny jihu surveys these rivers and woods more fully than the
+      // western margin of Štítové hory, whose scale rounds to the same priority.
+      zIndex:Math.round(-Math.log(k)*10)+40+(styled && id==="stiny"?1:0)+(chosen && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
       maskImage:window.OKRAJE?.[key]?'url("'+OKRAJE[key]+'")':"none",maskSize:"100% 100%",
       opacity:String(chosen?1:Math.min(1,.6+.4*(state.scale/area.minimum-1)))});
     const physicalBox={left:"0",top:"0",width:"100%",height:"100%"};
