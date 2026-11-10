@@ -49,10 +49,10 @@ const temata = (() => {
   }
   select.onchange=()=>{if(select.value && (state.id!=="tara"||!isRedraw())){returnToRedraw();fit("tara");}draw();};
   function matches(p,row){
-    if(!p||!row||!["sidlo","mesto"].includes(p.type))return false;
+    if(!p||!row||!["sidlo","mesto"].includes(p.type)||choose(p.name)!==row)return false;
     if(normalized(row.name)==="kolmar")return ["sever","hlubiny"].includes(p.id);
     if(normalized(row.name)==="vrchov" && !["sever","hlubiny"].includes(p.id))return false;
-    return choose(p.name)===row;
+    return true;
   }
   function table(row,parent){
     const tbl=document.createElement("table");parent.append(tbl);
