@@ -186,6 +186,7 @@ function go(p){
     const target=points.find(other=>other.id===id && fold(other.name)===fold(nameOn(id)));
     b.onclick=()=>{if(target)go(target);else fit(id);};related.append(b);
   }
+  temata.detail(p);
   $("detail").hidden=false;$("search").value="";$("search").blur();results();draw();
 }
 function inspectOnTara(place, recenter=true){
@@ -334,7 +335,8 @@ function draw(){
  }
  regionalTiles(state,regionLayer,map,project);
  renderCourses(s);
- labels.replaceChildren();const occupied=[];
+ temata.draw();
+ labels.replaceChildren();const occupied=temata.occupied();
  const mobileOverview = map.clientWidth < 500 && state.scale >= fitScale()*.9;
  const visible=points.filter(p=>p.id===state.id && (!p.hypothesis || isRedraw()) && (
    (p===state.selected && !(facsimile && state.mode==="list")) ||

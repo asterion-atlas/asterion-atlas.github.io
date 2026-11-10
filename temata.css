@@ -1,0 +1,18 @@
+#politicke-uzemi,#politicke-nazvy{position:absolute;left:0;top:0;pointer-events:none}
+#politicke-uzemi{transform-origin:0 0;max-width:none}
+#politicke-nazvy{inset:0;overflow:hidden}
+#politicke-nazvy span{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;font:600 italic 13px Georgia,serif;color:#302839;text-shadow:0 0 3px white,0 0 4px #faf1d4}
+#politicky-pramen{font-size:12px;margin:.4em 0}
+#politicky-pramen small{display:block}
+#otevrit-demografii{margin:.4em 0}
+#obyvatelstvo{width:min(38rem,94vw);max-height:83vh;color:#2d423c;background:#faf6eb;border:1px solid #89998c;border-radius:6px}
+#obyvatelstvo::backdrop{background:#1c322b80}
+#obyvatelstvo h2{font:1.6rem Georgia,serif;margin:0 0 .4em}
+#zavrit-demografii{float:right}
+#demograficky-seznam details{border-bottom:1px solid #c8c8b6;padding:.45em 0}
+#demograficky-seznam summary{cursor:pointer}
+#demograficky-detail:not(:empty){margin:.5em 0}
+#demograficky-detail table,#obyvatelstvo table{border-collapse:collapse;font-size:12px;width:100%;margin:.35em 0}
+#demograficky-detail th,#obyvatelstvo th{text-align:left}
+#demograficky-detail td,#obyvatelstvo td{padding:.15em .45em .15em 0}
+#detail{max-height:64%;overflow:auto}

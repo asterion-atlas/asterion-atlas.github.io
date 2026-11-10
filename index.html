@@ -1,9 +1,11 @@
 <!doctype html>
-<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f1e7"><title>Atlas Asterionu · Tara</title><link rel="stylesheet" href="style.css"></head><body>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f1e7"><title>Atlas Asterionu · Tara</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="temata.css"></head><body>
 <header><div class="mark" aria-hidden="true">✥</div><div class="brand">Asterion</div><span class="divider"></span><h1>Mapový atlas</h1><a href="listy.html">Původní listy</a><button id="aboutOpen">O atlasu</button></header>
 <main><aside><label for="sheet">Mapový list</label><select id="sheet"><option value="tara">Tara</option><option value="dalavy">Nové Dálavy</option><option value="albireo">Albireo</option></select>
 <label for="area" id="areaLabel">Oblast na Taře</label><select id="area"><option value="">Celá Tara</option></select>
-<a class="islands-link" href="?misto=Ostrovy%20z%C3%A1%C5%99%C3%ADc%C3%ADho%20slunce">Ostrovy zářícího slunce</a><h2>Místopis</h2><input id="search" type="search" placeholder="Hledat ve všech listech…" aria-label="Hledat místo ve všech listech" autocomplete="off">
+<a class="islands-link" href="?misto=Ostrovy%20z%C3%A1%C5%99%C3%ADc%C3%ADho%20slunce">Ostrovy zářícího slunce</a><label for="politicky-rok">Politické území</label><select id="politicky-rok"><option value="">Bez politické vrstvy</option><option value="850">Rok 850 k. l.</option><option value="863">Rok 863 k. l.</option></select>
+<p id="politicky-pramen" hidden></p><button type="button" id="otevrit-demografii">Obyvatelstvo sídel</button>
+<h2>Místopis</h2><input id="search" type="search" placeholder="Hledat ve všech listech…" aria-label="Hledat místo ve všech listech" autocomplete="off">
 <div id="results" aria-label="Nalezená místa"></div></aside>
 <section id="map" tabindex="0" aria-label="Interaktivní mapa. Šipky pro posun, plus a minus pro přiblížení.">
 <div id="tileLayer" aria-hidden="true"></div><svg id="courses" aria-hidden="true"></svg><div id="labels"></div>
@@ -23,11 +25,12 @@
 <div hidden class="switch" role="group" aria-label="Mapová vrstva"><button id="sketchMode" aria-pressed="true">Překres</button><button id="dalavskyMode" aria-pressed="false" title="Jednotná kresba celé Tary podle Nových Dálav">Dálavský styl</button><button id="atlasMode" aria-pressed="false">Atlas</button><button id="cc3Mode" aria-pressed="false" title="Herwin Wielink · Campaign Cartographer 3+">CC3+</button><button id="listMode" aria-pressed="false">Předloha</button></div>
 <button id="south" type="button">Jih Tary ↓</button><span id="blank" hidden>Za okrajem jižní kresby KO2c</span><div id="nav"><button id="plus" aria-label="Přiblížit">+</button><button id="minus" aria-label="Oddálit">−</button><button id="nativeZoom" hidden aria-label="Původní rozlišení" title="Původní rozlišení">1:1</button><button id="fit" aria-label="Zobrazit celý list" title="Celý list">⛶</button></div>
 <div class="scale"><span id="scaleBar"></span><span id="scaleText"></span></div>
-<div id="credit"></div><div id="detail" hidden><button id="closeDetail" aria-label="Zavřít detail">×</button><small id="dk"></small><strong id="dn"></strong><span id="ds"></span><button id="regional" hidden>Otevřít na mapě Dálav</button><div id="related"></div></div>
+<div id="credit"></div><div id="detail" hidden><button id="closeDetail" aria-label="Zavřít detail">×</button><small id="dk"></small><strong id="dn"></strong><span id="ds"></span><button id="regional" hidden>Otevřít na mapě Dálav</button><div id="demograficky-detail"></div><div id="related"></div></div>
 </section></main>
+<dialog id="obyvatelstvo"><button id="zavrit-demografii" aria-label="Zavřít">×</button><h2>Obyvatelstvo sídel</h2><p id="demograficke-prameny"></p><label for="hledat-sidlo">Najít sídlo</label><input type="search" id="hledat-sidlo" autocomplete="off"><div id="demograficky-seznam"></div></dialog>
 <dialog id="about"><button id="aboutClose" aria-label="Zavřít">×</button><h2>Atlas Asterionu</h2>
 <p>V mapě Tary vyhledej místo nebo vyber oblast. Při přiblížení se objeví místní kresba a další názvy. Mapu posuneš tažením nebo šipkami.</p>
 <p>Kontinentální předlohu Tary, Nové Dálavy a Lendor nakreslila Jana Žižková. Atlas jejich kresbu převádí do jednotného dálavského stylu. Jižní pokračování vychází z pracovního listu KO2c. U regionálních listů uvádíme autora, pokud je doložen.</p>
 <p><a href="?misto=Ostrovy%20z%C3%A1%C5%99%C3%ADc%C3%ADho%20slunce">Ostrovy zářícího slunce</a> popisuje kapitola B modulu <i>Nemrtví a světlonoši</i>. Přesnou polohu souostroví a tvary břehů atlas navrhuje jako hypotézu.</p>
 <p><a href="listy.html">Původní mapy Tary, Dálav a Lendoru</a> · <a href="https://asterionrpg.cz/index.php/mapy.html">Katalog map Asterionu</a></p></dialog>
-<script src="data.js"></script><script src="navaznosti.js"></script><script src="dalavsky/index.js"></script><script src="regiony.js"></script><script src="ostrovy-slunce.js"></script><script src="atlas.js"></script></body></html>
+<script src="data.js"></script><script src="navaznosti.js"></script><script src="dalavsky/index.js"></script><script src="regiony.js"></script><script src="ostrovy-slunce.js"></script><script src="temata-data.js"></script><script src="temata.js"></script><script src="atlas.js"></script></body></html>
