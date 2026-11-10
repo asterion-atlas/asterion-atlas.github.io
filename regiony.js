@@ -157,7 +157,7 @@ function svgElement(tag,attrs={}){
   return element;
 }
 function visibleJoins(){
-  if(state.id!=="tara"||!isRedraw())return [];
+  if(state.id!=="tara"||!isRedraw()||state.scale<1)return [];
   const [left,top]=unproject(0,0),[right,bottom]=unproject(map.clientWidth,map.clientHeight);
   return (window.NAVAZNOSTI||[]).filter(j=>j.x<right&&j.y<bottom&&j.x+j.w/j.d>left&&j.y+j.h/j.d>top);
 }
