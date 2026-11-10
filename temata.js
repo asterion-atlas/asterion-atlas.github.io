@@ -12,7 +12,25 @@ const temata = (() => {
     863:[["Řečpospolitá Erinská",402,72],["Rilondské království",250,224],["Říše starých trpaslíků",319,229],["Říše starých trpaslíků",533,207],["Tarské království",385,305],["Zlaté císařství",475,250],["Rašal Naf",344,365],["Nové Umrlčí království",304,451],["Plavena",700,171]]
   };
   const aliases={"bratkovice":"Bratkowice","jižní erin":"Jižní Erina","kirdin":"Kirden"};
-  const choose=name=>names.get(normalized(aliases[name.toLocaleLowerCase("cs")]||aliases[normalized(name)]||name));
+  // Map spellings are tied to a sheet to keep homonymous places distinct.
+  const locations=[
+    {town:"Bialaweža / Temnja",targets:[["hlubiny","Bílá weža"],["hlubiny","Temnja"]],sheets:["hlubiny","sever"],note:"Společný údaj pro pevnost Bialaweža a sousední osadu Temnja. Z hlubin zelené a modré, historie a kolonie Jižní dálavy."},
+    {town:"Brakarig",targets:[["hlubiny","Pevnost Brakarig"]],sheets:["hlubiny"],note:"Z hlubin zelené a modré, Severní dálava. Pevnost Alrika en Forgon v Západních statcích."},
+    {town:"Jinuka",targets:[["hlubiny","Jinuki"]],sheets:["hlubiny","sever"],note:"Z hlubin zelené a modré, kolonie Jižní dálavy. Jinuka u posledního přítoku Rugowy, v přepisu mapy Jinuki."},
+    {town:"Obrukowo",targets:[["hlubiny","Obrukovo"]],sheets:["hlubiny","sever"],note:"Z hlubin zelené a modré, kolonie Jižní dálavy. Obrukovo v deltě Itancy."},
+    {town:"Osirean nam\u0060bata",targets:[["severozapad","Oširean Nam Bata"]],sheets:["severozapad","severozapad-slepa"],note:"Písky proroctví, Pouštní město Osirean Nam’bata. Poloha na mapě Severozápadní Tary."},
+    {town:"Pevnost Zlom. vazů",targets:[["hlubiny","Pevnost Zlomených vazů"]],sheets:["hlubiny","sever"],note:"Z hlubin zelené a modré, kolonie Jižní dálavy. Pevnost v deltě Mármáry."},
+    {town:"Skalní město (Nuenga nam\u0060bata)",targets:[["severozapad","Skalní město"]],sheets:["severozapad"],note:"Písky proroctví, Nuenga Nam’bata (Skalní město). Poloha podle kruhového skaliska na mapě Severozápadní Tary."},
+    {town:"Tession",targets:[["dalavy","Tessin"]],sheets:["dalavy","stare-dalavy"],note:"Tessin na mapě Nových Dálav a v Času temna, oddíl N.12.1. Přehled Města uvádí Tession, sídlo hyassa."},
+    {town:"Velký trh",targets:[["stiny","Velký trh"]],sheets:["stiny","severozapad"],note:"Písky proroctví, Tři Zuby. Vesnice u přívozu přes Duren. Bod podle podrobnější mapy Stínů jihu."},
+    {town:"Zolty kriš",targets:[["hlubiny","Zolty krizz"]],sheets:["hlubiny","sever"],note:"Z hlubin zelené a modré, kolonie Jižní dálavy. Sídlo na Draze reke, v přepisu mapy Zolty krizz."}
+  ];
+  const locationByTown=new Map(locations.map(item=>[normalized(item.town),item]));
+  const locationByMapName=new Map(locations.flatMap(item=>item.targets.map(([,name])=>[normalized(name),item])));
+  const choose=name=>{
+    const mapped=locationByMapName.get(normalized(name));
+    return names.get(normalized(mapped?.town||aliases[name.toLocaleLowerCase("cs")]||aliases[normalized(name)]||name));
+  };
   const link=(title,url)=>{const a=document.createElement("a");a.textContent=title;a.href=url;a.target="_blank";a.rel="noopener";return a;};
   const add=(parent,tag,value)=>{const el=document.createElement(tag);el.textContent=value;parent.append(el);return el;};
   const select=document.getElementById("politicky-rok");
@@ -50,11 +68,15 @@ const temata = (() => {
   select.onchange=()=>{if(select.value && (state.id!=="tara"||!isRedraw())){returnToRedraw();fit("tara");}draw();};
   function matches(p,row){
     if(!p||!row||!["sidlo","mesto"].includes(p.type)||choose(p.name)!==row)return false;
+    const location=locationByTown.get(normalized(row.name));
+    if(location)return location.sheets.includes(p.id) && location.targets.some(([,name])=>normalized(name)===normalized(p.name));
     if(normalized(row.name)==="kolmar")return ["sever","hlubiny"].includes(p.id);
     if(normalized(row.name)==="vrchov" && !["sever","hlubiny"].includes(p.id))return false;
     return true;
   }
   function table(row,parent){
+    const location=locationByTown.get(normalized(row.name));
+    if(location)add(parent,"p",location.note);
     const tbl=document.createElement("table");parent.append(tbl);
     const head=tbl.createTHead().insertRow();["Rok k. l.","Přibližný počet obyvatel","Pramen"].forEach(s=>add(head,"th",s));
     const body=tbl.createTBody();
@@ -75,13 +97,21 @@ const temata = (() => {
   function list(){
     body.replaceChildren();
     for(const row of [...TEMATA.towns].sort((a,b)=>a.name.localeCompare(b.name,"cs"))){
-      if(!normalized(row.name).includes(normalized(search.value)))continue;
+      const location=locationByTown.get(normalized(row.name));
+      const searchable=[row.name,...(location?.targets.map(([,name])=>name)||[])];
+      if(!searchable.some(name=>normalized(name).includes(normalized(search.value))))continue;
       const wrap=document.createElement("details");body.append(wrap);add(wrap,"summary",row.name);
       wrap.ontoggle=()=>{
         if(!wrap.open || wrap.querySelector("table"))return;
         table(row,wrap);
-        const place=onTara.find(p=>!ATLAS.regions[p.registration].inset && matches(p,row));
-        if(place){const btn=add(wrap,"button","Ukázat na Taře");btn.onclick=()=>{dialog.close();inspectOnTara(place);};}
+        const candidates=onTara.filter(p=>!ATLAS.regions[p.registration].inset && matches(p,row));
+        const places=location
+          ? location.targets.map(([id,name])=>candidates.find(p=>p.id===id && p.name===name))
+          : [candidates[0]];
+        for(const place of places.filter(Boolean)){
+          const label=places.length>1?"Ukázat na Taře · "+place.name:"Ukázat na Taře";
+          const btn=add(wrap,"button",label);btn.onclick=()=>{dialog.close();inspectOnTara(place);};
+        }
       };
     }
     if(!body.childElementCount)add(body,"p","Žádné odpovídající sídlo.");
