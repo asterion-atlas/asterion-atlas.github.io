@@ -50,7 +50,7 @@ const tileLayer = $("tileLayer");
 const labels = $("labels");
 const kinds = {ostrov:"Ostrov nebo souostroví",budova:"Městský objekt",kontinent:"Kontinent", kraj:"Krajina", voda:"Vodstvo",les:"Les",vrch:"Hory a kopce",jezero:"Jezero",trhlina:"Trhlina",tok:"Řeka nebo potok",cesta:"Cesta", mesto:"Město", sidlo:"Sídlo", mistni:"Místní objekt"};
 const isDalavy = id => id==="dalavy" || id==="stare-dalavy";
-const state = {id:"tara", mode:"dalavsky", x:525, y:374, scale:1, selected:null};
+const state = {id:"tara", mode:"sketch", x:525, y:374, scale:1, selected:null};
 const trail=[];
 const backButton=document.createElement("button");
 backButton.type="button";backButton.id="previousMap";backButton.textContent="← Zpět na mapu";backButton.hidden=true;
@@ -80,7 +80,7 @@ const extentTara=Math.max(sheets.tara.w,...areaRegistry.filter(([,r])=>r.inset)
 const regionLayer=document.createElement("div");regionLayer.id="regionTiles";regionLayer.setAttribute("aria-hidden","true");tileLayer.after(regionLayer);
 const styledSheets=new Set(window.DALAVSKY);
 const isRedraw=()=>state.mode==="sketch" || state.mode==="dalavsky";
-const returnToRedraw=()=>{state.mode="dalavsky";};
+const returnToRedraw=()=>{if(state.mode!=="dalavsky")state.mode="sketch";};
 const hasSketch = id => Boolean(sheets[id].levels.sketch || ["tara","lendor","svet","dalavy"].includes(id));
 for(const [id,area] of areaRegistry){
   const title=sheets[area.sheet||id].title+(area.sheet?" · "+({
@@ -437,6 +437,8 @@ function draw(){
  }else if(state.id==="svet" && state.mode==="atlas"){
   $("credit").textContent="Lendor a Tara · kontinentální listy a jižní rozšíření KO2c";
  }
+ const styleSwitch=document.querySelector(".switch");
+ $("south").style.top=(styleSwitch.offsetTop+styleSwitch.offsetHeight+10)+"px";
  $("south").hidden=!["tara","dalavy","stare-dalavy"].includes(state.id);
  $("south").textContent=state.id==="tara"?"Jih Tary":"Jih Dálav";
  const blankY=project({x:525,y:978})[1];
@@ -478,7 +480,7 @@ function draw(){
  $("blank").style.top=blankY+"px";
  map.dataset.sheet=state.id;map.dataset.scale=state.scale.toFixed(3);
 }
-function mode(){state.mode="dalavsky";draw();}
+function mode(id){state.mode=id;draw();}
 function zoom(factor,px=map.clientWidth/2,py=map.clientHeight/2){
  const [x,y]=unproject(px,py);
  const scale=Math.max(fitScale()*.48,Math.min(state.id==="tara" && isRedraw()?100000:Math.max(8,sheets[state.id].native[0]/sheets[state.id].w*2),state.scale*factor));let dest=state.id,tx=x,ty=y,sc=scale;
