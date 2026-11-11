@@ -167,7 +167,7 @@ function visibleJoins(){
   return (window.NAVAZNOSTI||[]).filter(j=>j.x<right&&j.y<bottom&&j.x+j.w/j.d>left&&j.y+j.h/j.d>top);
 }
 function drawJoins(container){
-  const visible=visibleJoins().filter(j=>!(window.CONTINUOUS_TARA && isStyled() && j.id==="tiche-vody"));
+  const visible=visibleJoins().filter(j=>!(window.CONTINUOUS_TARA && isStyled() && ["tiche-vody","soutoky-sever"].includes(j.id)));
   for(const el of container.querySelectorAll("[data-join]"))if(!visible.some(j=>j.id===el.dataset.join))el.remove();
   for(const j of visible){
     let svg=container.querySelector('[data-join="'+j.id+'"]');
