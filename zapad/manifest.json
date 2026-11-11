@@ -2,13 +2,13 @@
   "severozapad": {
     "source": "Severozapadni Tara.jpg",
     "author": "Jana Žižková",
-    "objects": 6655,
+    "objects": 16672,
     "layers": {
-      "trees": 566,
-      "relief": 5003,
+      "relief": 14998,
+      "trees": 578,
+      "settlements": 26,
       "illustrations": 8,
-      "detail": 1052,
-      "settlements": 26
+      "detail": 1062
     },
     "geometry_shared": true,
     "scope": "entire registered sheet"
@@ -16,11 +16,11 @@
   "horni": {
     "source": "07 Horni knizectvi.jpg",
     "author": "Jan „Čenis“ Galeta",
-    "objects": 362,
+    "objects": 1885,
     "layers": {
-      "settlements": 8,
-      "detail": 61,
-      "relief": 293
+      "relief": 1822,
+      "detail": 55,
+      "settlements": 8
     },
     "geometry_shared": true,
     "scope": "entire registered sheet"
@@ -28,11 +28,11 @@
   "stiny": {
     "source": "10 Krajiny za obzorem - Stiny jihu.jpg",
     "author": "Jana Žižková",
-    "objects": 1241,
+    "objects": 4094,
     "layers": {
-      "relief": 1124,
-      "settlements": 5,
-      "detail": 112
+      "relief": 3979,
+      "detail": 110,
+      "settlements": 5
     },
     "geometry_shared": true,
     "scope": "Western part only (x < 235, y < 470)"
@@ -60,5 +60,6 @@
     ],
     "Mike Schley / ProFantasy": "S symbols and textures",
     "Herwin Wielink / ProFantasy": "D symbols and textures"
-  }
+  },
+  "continuous_surface": "../souvisla-tara/manifest.json"
 }

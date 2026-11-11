@@ -77,6 +77,7 @@ function shorelineMasks(svg){
 function drawContinentalCourses(svg,maskOldBank){
   for(const [key,area] of areaRegistry){
     const id=area.sheet||key,sheet=ATLAS.sheets[id];
+    if(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni"].includes(id))continue;
     if(!sheet.paths1340?.length || (area.variant && $("area").value!==key && !area.variantPaths) || (state.scale<area.minimum && $("area").value!==key))continue;
     for(const shape of sheet.paths1340){
       const q=placesByArea.get(key)?.get(shape.name);
@@ -136,7 +137,7 @@ function styledImage(group,id,box,pixelsPerUnit){
   if(variant){group.querySelector("img[data-styled]")?.remove();(variant==="s"?schleyTiles:wielinkTiles)(group,id,box);return;}
   let image=group.querySelector("img[data-styled]");
   if(!image){image=new Image();image.alt="";image.draggable=false;group.append(image);}
-  const src="dalavsky/"+id+".svg?v=20261111o";
+  const src="dalavsky/"+id+".svg?v=20261111q";
   if(image.getAttribute("src")!==src){image.dataset.styled=id;image.src=src;}
   Object.assign(image.style,box);
 }
@@ -197,7 +198,7 @@ function drawJoins(container){
     svg.style.zIndex=styled && container.querySelector('[data-area="dalavy"]')?89:chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
     if(styled){
       const ground=svg.querySelector("g > image");
-      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111o");
+      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111q");
     }
     svg.setAttribute("viewBox",[(left-j.x)*j.d,(top-j.y)*j.d,map.clientWidth*scale,map.clientHeight*scale].join(" "));
   }
@@ -217,10 +218,12 @@ function shoreUnderCenter(container,areaKey){
   return null;
 }
 function regionalTiles(state,container,map,project){
+  if(window.CONTINUOUS_TARA)continuousTara(state,container,map,project);
   const needed=new Set();
   if(state.id==="tara" && isRedraw()) for(const [key,area] of areaRegistry){
-    const chosen=document.getElementById("area").value===key;
+    const chosen=!(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni","stiny"].includes(key)) && document.getElementById("area").value===key;
     const id=area.sheet||key,sheet=ATLAS.sheets[id];
+    if(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni"].includes(id))continue;
     const coastOnly=!chosen && state.scale<area.minimum;
     if(!area.overlay || (!chosen && area.variant) || coastOnly || !area.clip.length) continue;
     const layer=area.linework?"list":id==="dalavy"?"atlas":"sketch", levels=sheet.levels[layer];
@@ -241,7 +244,7 @@ function regionalTiles(state,container,map,project){
       transformOrigin:"0 0",transform:"matrix("+basis.join(",")+",0,0)",
       // Stíny jihu surveys these rivers and woods more fully than the
       // western margin of Štítové hory, whose scale rounds to the same priority.
-      zIndex:(styled && id==="dalavy"?90:Math.round(-Math.log(k)*10)+40+(styled && id==="stiny"?1:0))+(chosen && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
+      zIndex:(styled && id==="dalavy"?90:Math.round(-Math.log(k)*10)+40+(styled && id==="stiny"?1:0))+(chosen && !(styled && id==="stiny" && window.CONTINUOUS_TARA) && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
       maskImage:styled && window.WESTERN_MASKS?.[id]?'url("'+WESTERN_MASKS[id]+'")':window.OKRAJE?.[key]?'url("'+OKRAJE[key]+'")':"none",maskSize:"100% 100%",
       opacity:String(chosen?1:Math.min(1,.6+.4*(state.scale/area.minimum-1)))});
     const physicalBox={left:"0",top:"0",width:"100%",height:"100%"};
