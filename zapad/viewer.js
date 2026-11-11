@@ -11,7 +11,7 @@ function westernTiles(group,id,box){
  const x1=Math.min(Math.ceil(w/tile),Math.ceil((v.right-r.left)/sx/tile)),y1=Math.min(Math.ceil(h/tile),Math.ceil((v.bottom-r.top)/sy/tile));
  for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){
   const key=z+'/'+x+'-'+y;needed.add(key);let im=holder.querySelector('[data-west-tile="'+key+'"]');
-  if(!im){im=new Image();im.alt='';im.draggable=false;im.dataset.westTile=key;im.src='zapad/'+state.mode+'/'+id+'/'+key+'.webp?v=20261111q';holder.append(im);}
+  if(!im){im=new Image();im.alt='';im.draggable=false;im.dataset.westTile=key;im.src='zapad/'+state.mode+'/'+id+'/'+key+'.webp?v=20261111r';holder.append(im);}
   Object.assign(im.style,{position:'absolute',display:'block',maxWidth:'none',left:(100*Math.max(0,x*tile-1)/w)+'%',top:(100*Math.max(0,y*tile-1)/h)+'%',width:(100*(Math.min(w,(x+1)*tile+1)-Math.max(0,x*tile-1))/w)+'%',height:(100*(Math.min(h,(y+1)*tile+1)-Math.max(0,y*tile-1))/h)+'%'});
  }
  for(const im of [...holder.children])if(!needed.has(im.dataset.westTile))im.remove();
