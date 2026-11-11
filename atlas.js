@@ -434,7 +434,7 @@ function draw(){
  const source=sheets[sourceId];
  if(source && !cc3 && !(state.id==="tara" && state.x>s.w)){
    const credit=$("credit");
-   credit.textContent=(styled?(["s","d"].includes(state.mode)?(sourceId==="dalavy"?(state.mode==="d"?"Styl D · Herwin Wielink / ProFantasy · ":"Varianta S · Mike Schley / ProFantasy · "):"Dálavský styl (mimo rozsah "+state.mode.toUpperCase()+") · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
+   credit.textContent=(styled?(["s","d"].includes(state.mode)?((sourceId==="dalavy"||!!window.WESTERN_TILES?.[sourceId])?(state.mode==="d"?"Styl D · Herwin Wielink / ProFantasy · ":"Varianta S · Mike Schley / ProFantasy · "):"Dálavský styl (mimo rozsah "+state.mode.toUpperCase()+") · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
    const link=document.createElement("a");
    link.textContent="Pramen";link.title=source.title;link.href=source.url||"https://asterionrpg.cz/index.php/mapy.html";
    if(source.url){link.target="_blank";link.rel="noopener";}

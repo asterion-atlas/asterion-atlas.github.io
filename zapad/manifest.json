@@ -1,0 +1,64 @@
+{
+  "severozapad": {
+    "source": "Severozapadni Tara.jpg",
+    "author": "Jana Žižková",
+    "objects": 6655,
+    "layers": {
+      "trees": 566,
+      "relief": 5003,
+      "illustrations": 8,
+      "detail": 1052,
+      "settlements": 26
+    },
+    "geometry_shared": true,
+    "scope": "entire registered sheet"
+  },
+  "horni": {
+    "source": "07 Horni knizectvi.jpg",
+    "author": "Jan „Čenis“ Galeta",
+    "objects": 362,
+    "layers": {
+      "settlements": 8,
+      "detail": 61,
+      "relief": 293
+    },
+    "geometry_shared": true,
+    "scope": "entire registered sheet"
+  },
+  "stiny": {
+    "source": "10 Krajiny za obzorem - Stiny jihu.jpg",
+    "author": "Jana Žižková",
+    "objects": 1241,
+    "layers": {
+      "relief": 1124,
+      "settlements": 5,
+      "detail": 112
+    },
+    "geometry_shared": true,
+    "scope": "Western part only (x < 235, y < 470)"
+  },
+  "generated_assets": {
+    "terrain": 6,
+    "figures": 6,
+    "tool": "built-in image_gen",
+    "roles": "decorative, not new named locations",
+    "source_reference": "Severozapadni Tara.jpg; supplied Dalavy atlas"
+  },
+  "coverage": {
+    "severozapad": "registered content of northwest Tara",
+    "horni": "southern Zelany and upper Duren",
+    "stiny": "western strip only, x < 235 and y < 470; the rest retains its previous artwork"
+  },
+  "publication": "Flattened tiles only. Licensed symbol source files are private.",
+  "provenance": {
+    "Jana Žižková": [
+      "Severozapadni Tara.jpg",
+      "10 Krajiny za obzorem - Stiny jihu.jpg"
+    ],
+    "Jan „Čenis“ Galeta": [
+      "07 Horni knizectvi.jpg"
+    ],
+    "Mike Schley / ProFantasy": "S symbols and textures",
+    "Herwin Wielink / ProFantasy": "D symbols and textures"
+  }
+}

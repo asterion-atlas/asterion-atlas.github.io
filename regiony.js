@@ -129,6 +129,7 @@ function reliefVectors(id,key,sheet){
   return svg;
 }
 function styledImage(group,id,box,pixelsPerUnit){
+  if(window.WESTERN_TILES?.[id]){group.querySelector("img[data-styled]")?.remove();westernTiles(group,id,box);return;}
   const variant=["s","d"].includes(state.mode) && id==="dalavy"?state.mode:null;
   if(variant!=="s")group.querySelector("[data-s-map]")?.remove();
   if(variant!=="d")group.querySelector("[data-d-map]")?.remove();
@@ -241,7 +242,7 @@ function regionalTiles(state,container,map,project){
       // Stíny jihu surveys these rivers and woods more fully than the
       // western margin of Štítové hory, whose scale rounds to the same priority.
       zIndex:(styled && id==="dalavy"?90:Math.round(-Math.log(k)*10)+40+(styled && id==="stiny"?1:0))+(chosen && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
-      maskImage:styled && id==="dalavy"?"none":window.OKRAJE?.[key]?'url("'+OKRAJE[key]+'")':"none",maskSize:"100% 100%",
+      maskImage:styled && window.WESTERN_MASKS?.[id]?'url("'+WESTERN_MASKS[id]+'")':window.OKRAJE?.[key]?'url("'+OKRAJE[key]+'")':"none",maskSize:"100% 100%",
       opacity:String(chosen?1:Math.min(1,.6+.4*(state.scale/area.minimum-1)))});
     const physicalBox={left:"0",top:"0",width:"100%",height:"100%"};
     if(styled){styledImage(group,id,physicalBox,scale);continue;}

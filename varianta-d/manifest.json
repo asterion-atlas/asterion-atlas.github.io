@@ -411,5 +411,6 @@
       "sha256": "9fbe88f817507063b7b13377b6137003d13b91c9229f68d88e2cad67bf57ef91"
     }
   ],
-  "outside_scope": "Dálavský styl remains visible outside Nové Dálavy."
+  "outside_scope": "Outside Nove Dalavy and the western extension, the prior Dalavsky rendering remains.",
+  "western_extension": "../zapad/manifest.json"
 }
