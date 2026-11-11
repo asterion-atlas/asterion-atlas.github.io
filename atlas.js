@@ -406,6 +406,7 @@ function draw(){
   const besideRelief=(p.type==="vrch" || p.type==="trhlina") && p!==state.selected;
   const placements=settlement?["","west","above","below"]:
     besideRelief?["north","south",""]:landscape?["","north","south"]:[""];
+  if(styled && p.id==="dalavy" && landscape)placements.push("detail-north","detail-south","detail-east","detail-west");
   let box;
   for(const placement of placements){
     b.dataset.placement=placement;

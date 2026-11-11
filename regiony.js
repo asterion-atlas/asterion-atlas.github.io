@@ -131,7 +131,7 @@ function reliefVectors(id,key,sheet){
 function styledImage(group,id,box,pixelsPerUnit){
   let image=group.querySelector("img[data-styled]");
   if(!image){image=new Image();image.alt="";image.draggable=false;group.append(image);}
-  const src="dalavsky/"+id+".svg?v=20261110b";
+  const src="dalavsky/"+id+".svg?v=20261111d";
   if(image.getAttribute("src")!==src){image.dataset.styled=id;image.src=src;}
   Object.assign(image.style,box);
 }
@@ -189,10 +189,10 @@ function drawJoins(container){
     const [left,top]=unproject(0,0),scale=j.d/state.scale;
     const choice=container.querySelector('[data-area="'+$("area").value+'"]');
     const chart=choice&&ATLAS.regions[choice.dataset.area];
-    svg.style.zIndex=chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
+    svg.style.zIndex=styled && container.querySelector('[data-area="dalavy"]')?89:chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
     if(styled){
       const ground=svg.querySelector("g > image");
-      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261110b");
+      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111d");
     }
     svg.setAttribute("viewBox",[(left-j.x)*j.d,(top-j.y)*j.d,map.clientWidth*scale,map.clientHeight*scale].join(" "));
   }
@@ -236,8 +236,8 @@ function regionalTiles(state,container,map,project){
       transformOrigin:"0 0",transform:"matrix("+basis.join(",")+",0,0)",
       // Stíny jihu surveys these rivers and woods more fully than the
       // western margin of Štítové hory, whose scale rounds to the same priority.
-      zIndex:Math.round(-Math.log(k)*10)+40+(styled && id==="stiny"?1:0)+(chosen && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
-      maskImage:window.OKRAJE?.[key]?'url("'+OKRAJE[key]+'")':"none",maskSize:"100% 100%",
+      zIndex:(styled && id==="dalavy"?90:Math.round(-Math.log(k)*10)+40+(styled && id==="stiny"?1:0))+(chosen && state.scale<Math.max(area.minimum*2.4,3/k)?100:0),
+      maskImage:styled && id==="dalavy"?"none":window.OKRAJE?.[key]?'url("'+OKRAJE[key]+'")':"none",maskSize:"100% 100%",
       opacity:String(chosen?1:Math.min(1,.6+.4*(state.scale/area.minimum-1)))});
     const physicalBox={left:"0",top:"0",width:"100%",height:"100%"};
     if(styled){styledImage(group,id,physicalBox,scale);continue;}

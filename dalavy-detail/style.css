@@ -1,0 +1,11 @@
+/* Detailed Nové Dálavy: source lettering above the asset artwork. */
+#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"]{color:#fff9df;text-shadow:0 1px 2px #253122,1px 0 2px #253122,-1px 0 2px #253122;font-style:italic}
+#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"].mesto,#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"].sidlo{padding-left:10px}
+#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"].mesto::before,#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"].sidlo::before{display:none}
+#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"].point-only::before{display:block}
+#map[data-mode="dalavsky"] #labels [data-sheet="dalavy"].selected{color:#253122;text-shadow:none}
+
+#labels [data-placement="detail-north"]{translate:0 -32px}
+#labels [data-placement="detail-south"]{translate:0 32px}
+#labels [data-placement="detail-east"]{translate:65px 0}
+#labels [data-placement="detail-west"]{translate:-65px 0}
