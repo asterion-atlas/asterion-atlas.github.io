@@ -43,7 +43,7 @@ document.getElementById('north-routes')?.addEventListener('change',()=>draw());
 
 function continuousSourceAtCenter(){
  if(state.id!=='tara'||!isStyled())return null;
- const order=['severovychod','stitove','yrakan','sever','hvozdy-d','hvozdy','hvozdy-c','hvozdy-b','taros','lvi','zhave','koral','kokos','severozapad','stiny','horni','dalavy','kvetina','okoli-erinu','plan-erin','bludne','plan-sarindar-terasy'];
+ const order=['severovychod','stitove','yrakan','sever','hvozdy-d','hvozdy','hvozdy-c','hvozdy-b','zhave','koral','kokos','severozapad','stiny','horni','dalavy','kvetina','okoli-erinu','plan-erin','bludne','plan-sarindar-terasy'];
  for(const key of order.reverse()){
   const a=ATLAS.regions[key];if(!a)continue;const [k,ox,oy]=a.transform;
   const [x,y]=fromAreaAxes(a,(state.x-ox)/k,(state.y-oy)/k);
