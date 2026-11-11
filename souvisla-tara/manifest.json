@@ -1,5 +1,5 @@
 {
-  "version": "20261111t",
+  "version": "20261111t2",
   "bounds": [
     0,
     -60,
@@ -67,7 +67,7 @@
     },
     {
       "path": "dalavsky/0/2-1.webp",
-      "sha256": "35a538825f8f97b222b6866f38ea1c6cdc7deebf20e801833b625fac36bf50b5"
+      "sha256": "73181d9ba3e296ae1aedce76373cf8e390c6a95f09d8f7d81f84f576ab91a1fc"
     },
     {
       "path": "dalavsky/0/3-1.webp",
@@ -199,7 +199,7 @@
     },
     {
       "path": "dalavsky/1/5-3.webp",
-      "sha256": "0b40064c362fd2447f23d0dab9b48c95035dfacb96c11bf3fc68f9a1ef8d5f6f"
+      "sha256": "07edd2a29e4398a3c7c4517aea0d379110314bfa933e13e03d9e6bd7853cebf1"
     },
     {
       "path": "dalavsky/1/6-3.webp",
@@ -659,7 +659,7 @@
     },
     {
       "path": "dalavsky/2/11-7.webp",
-      "sha256": "f8a223b98b3b117e9f671e0533f84dd2acad385f976d53fb172e8745eb9c6fd6"
+      "sha256": "e49543f9a3f6eb4892db6dc86f36266c322aa620ba1801437de7b66ed7a5017b"
     },
     {
       "path": "dalavsky/2/12-7.webp",
@@ -2271,7 +2271,7 @@
     },
     {
       "path": "dalavsky/3/23-14.webp",
-      "sha256": "a853b9e27ca954b21778cb991dcc9671d692f83c8ab0b302b8d1777e69a66841"
+      "sha256": "5707b19fd195c38d0eb5db65dd9de0419f1ce8400ee253ef3bef5dcbf552c499"
     },
     {
       "path": "dalavsky/3/0-15.webp",
@@ -3423,7 +3423,7 @@
     },
     {
       "path": "s/0/2-1.webp",
-      "sha256": "5868401ee1fc9a2da2352d5aee9e24c076c60da25f297bbcd6f0ba267145d633"
+      "sha256": "ce202d5ea9db8feaf360178238e464a283b3a169a7628c54216228615680ef6f"
     },
     {
       "path": "s/0/3-1.webp",
@@ -3555,7 +3555,7 @@
     },
     {
       "path": "s/1/5-3.webp",
-      "sha256": "d1ec02ed7c5b06698bc009038ccbb7c199c5ad747162a29d421d34aebc90331f"
+      "sha256": "522ae1c031c86275a8a2fece4d2e825ce62ed5c86d0a8f300baa18d6373a54fc"
     },
     {
       "path": "s/1/6-3.webp",
@@ -4015,7 +4015,7 @@
     },
     {
       "path": "s/2/11-7.webp",
-      "sha256": "fd18cc958ed2a51365cbf711e4859610fadb3111a27dd702136c50b148ac4958"
+      "sha256": "8ef831a651d5dfedc629af77c1412051abd870e550b3deb0b678572e1c7c7b0f"
     },
     {
       "path": "s/2/12-7.webp",
@@ -5627,7 +5627,7 @@
     },
     {
       "path": "s/3/23-14.webp",
-      "sha256": "9b0ec62a6ae55871df60bbfd6c6315ccf11e783632296553687eace349d2df7c"
+      "sha256": "f1425bd8bfacc61da1ca92b4195912dc3e3e01ea63c2a2a82fc03b627615029b"
     },
     {
       "path": "s/3/0-15.webp",
@@ -6779,7 +6779,7 @@
     },
     {
       "path": "d/0/2-1.webp",
-      "sha256": "7074766baa6e1230805987797378a2db470f1067acaba40484ed451318357d58"
+      "sha256": "ae61253e553a18007666b1e0f86349127cb2db3c11c5baa95401a66d2c3e07fa"
     },
     {
       "path": "d/0/3-1.webp",
@@ -6911,7 +6911,7 @@
     },
     {
       "path": "d/1/5-3.webp",
-      "sha256": "5f28672d14d5ac469dd9ee6debb98120ca77b8e9cfad644f4419b88a979e82ad"
+      "sha256": "db5d274f6259820df61e960a8393ac85d67a4035fd28b9582fa0d25c082d2c0b"
     },
     {
       "path": "d/1/6-3.webp",
@@ -7371,7 +7371,7 @@
     },
     {
       "path": "d/2/11-7.webp",
-      "sha256": "de80ce8e49bb6e2d0a3ddd9f0f49c583bdc53d67be4e2364b6cd7d62c31efcc3"
+      "sha256": "ab6055fb3eb804b993d4e7d21f91052fe3dca2159e710ae8a3695cce17a9758a"
     },
     {
       "path": "d/2/12-7.webp",
@@ -8983,7 +8983,7 @@
     },
     {
       "path": "d/3/23-14.webp",
-      "sha256": "4561a7c664d2dd5b14a24b94ddef3cdf31b7eaa0db3a6250d251dfd7cccf9a18"
+      "sha256": "e9529e597571aed49863bd0fc7cac72f1333ed6e3b8522ed8419c4a6d9fc50b7"
     },
     {
       "path": "d/3/0-15.webp",
