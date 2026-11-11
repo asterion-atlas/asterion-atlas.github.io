@@ -1,0 +1,3 @@
+Built-in image_gen. Production prompt specification:
+Six distinct groups of 2-4 low rounded grassy knolls, yellow-olive highlights and green-brown shadow, oblique hand-painted fantasy cartography, 3x2 isolated equal cells, transparent RGBA. Reference Dalavy_asset_pack/atlas.png.
+No text, frame, background scene or ground rectangle. Decorative artwork only, no geographic authority.

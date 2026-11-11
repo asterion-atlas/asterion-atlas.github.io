@@ -1,0 +1,3 @@
+Built-in image_gen. Production prompt specification:
+Six distinct compact olive-green temperate broadleaf clumps, 2-5 overlapping trees, painterly fantasy map, upper-left light, 3x2 isolated equal cells, transparent RGBA. Red Forest is a name; no red leaves or palms. Reference Dalavy_asset_pack/atlas.png.
+No text, frame, background scene or ground rectangle. Decorative artwork only, no geographic authority.

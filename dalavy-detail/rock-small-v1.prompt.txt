@@ -1,0 +1,3 @@
+Built-in image_gen. Production prompt specification:
+Six distinct low angular rocky foothill/ridge groups, cream-grey lit faces, brown shadows, muted olive feet, hand-painted fantasy map, 3x2 isolated equal cells, transparent RGBA. Reference Dalavy_asset_pack/atlas.png.
+No text, frame, background scene or ground rectangle. Decorative artwork only, no geographic authority.
