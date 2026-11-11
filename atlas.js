@@ -355,6 +355,7 @@ function draw(){
    const chosen=$("area").value;
    visible.length=0;
    for(const p of placeIndex.places){
+     if(p!==state.selected && ['torgil','mistr-z','torgil-laborator','sarindar-rez'].includes(p.id) && state.scale<20000)continue;
      if(p!==state.selected && state.scale<p.min)continue;
      if(p.registration && chosen && ATLAS.regions[p.registration].variant && p.registration!==chosen && p!==state.selected)continue;
      visible.push(p);

@@ -1,5 +1,5 @@
 /* Fixed source ownership; fine Erin tiles refine resolution, never geography. */
-window.NORTH_SOURCES=['sever','hvozdy','hvozdy-b','hvozdy-c','hvozdy-d','hlubiny','hlubiny-kokos','hlubiny-koral','hlubiny-zhave','hlubiny-dalava','kokos','koral','zhave','kvetina','okoli-erinu','plan-erin','erin-dvoji-plan','taros','lvi'];
+window.NORTH_SOURCES=['torgil','mistr-z','torgil-laborator','sarindar-rez','severovychod','stitove','bludne','bludne-koncept','yrakan','plan-sarindar-terasy','gorm-psd','gorm-prealfa','gorm-nacrt','hvozd-pracovni','hvozd-stvanice','hvozd-starsi','sever','hvozdy','hvozdy-b','hvozdy-c','hvozdy-d','hlubiny','hlubiny-kokos','hlubiny-koral','hlubiny-zhave','hlubiny-dalava','kokos','koral','zhave','kvetina','okoli-erinu','plan-erin','erin-dvoji-plan','taros','lvi'];
 function northDetail(state,container,map,project){
  const enabled=state.id==='tara'&&isStyled(),used=new Set();
  if(enabled&&state.scale>14)for(const [order,c] of NORTH_FINE.entries()){
@@ -18,7 +18,7 @@ function northDetail(state,container,map,project){
   const minY=Math.max(0,Math.floor(Math.min(...view.map(p=>p[1]))/sy/t)),maxY=Math.min(Math.ceil(h/t),Math.ceil(Math.max(...view.map(p=>p[1]))/sy/t));
   for(let y=minY;y<maxY;y++)for(let x=minX;x<maxX;x++){
    const key=z+'/'+x+'-'+y;needed.add(key);let im=group.querySelector('[data-north-tile="'+key+'"]');
-   if(!im){im=new Image();im.alt='';im.draggable=false;im.dataset.northTile=key;im.src='sever/'+state.mode+'/'+c.area+'/'+key+'.webp?v=20261111t';group.append(im);}
+   if(!im){im=new Image();im.alt='';im.draggable=false;im.dataset.northTile=key;im.src='sever/'+state.mode+'/'+c.area+'/'+key+'.webp?v=20261111u';group.append(im);}
    const px=Math.max(0,x*t-1),py=Math.max(0,y*t-1);Object.assign(im.style,{position:'absolute',maxWidth:'none',left:100*px/w+'%',top:100*py/h+'%',width:100*(Math.min(w,(x+1)*t+1)-px)/w+'%',height:100*(Math.min(h,(y+1)*t+1)-py)/h+'%'});
    if(!im.complete)pending.push(new Promise(r=>{im.addEventListener('load',r,{once:true});im.addEventListener('error',r,{once:true})}));
   }
@@ -43,7 +43,7 @@ document.getElementById('north-routes')?.addEventListener('change',()=>draw());
 
 function continuousSourceAtCenter(){
  if(state.id!=='tara'||!isStyled())return null;
- const order=['sever','hvozdy-d','hvozdy','hvozdy-c','hvozdy-b','taros','lvi','zhave','koral','kokos','severozapad','stiny','horni','dalavy','kvetina','okoli-erinu','plan-erin'];
+ const order=['severovychod','stitove','yrakan','sever','hvozdy-d','hvozdy','hvozdy-c','hvozdy-b','taros','lvi','zhave','koral','kokos','severozapad','stiny','horni','dalavy','kvetina','okoli-erinu','plan-erin','bludne','plan-sarindar-terasy'];
  for(const key of order.reverse()){
   const a=ATLAS.regions[key];if(!a)continue;const [k,ox,oy]=a.transform;
   const [x,y]=fromAreaAxes(a,(state.x-ox)/k,(state.y-oy)/k);
