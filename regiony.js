@@ -131,7 +131,7 @@ function reliefVectors(id,key,sheet){
 function styledImage(group,id,box,pixelsPerUnit){
   let image=group.querySelector("img[data-styled]");
   if(!image){image=new Image();image.alt="";image.draggable=false;group.append(image);}
-  const src="dalavsky/"+id+".svg?v=20261111g";
+  const src="dalavsky/"+id+".svg?v=20261111h";
   if(image.getAttribute("src")!==src){image.dataset.styled=id;image.src=src;}
   Object.assign(image.style,box);
 }
@@ -192,7 +192,7 @@ function drawJoins(container){
     svg.style.zIndex=styled && container.querySelector('[data-area="dalavy"]')?89:chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
     if(styled){
       const ground=svg.querySelector("g > image");
-      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111g");
+      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111h");
     }
     svg.setAttribute("viewBox",[(left-j.x)*j.d,(top-j.y)*j.d,map.clientWidth*scale,map.clientHeight*scale].join(" "));
   }
