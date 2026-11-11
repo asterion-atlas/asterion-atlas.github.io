@@ -77,7 +77,7 @@ function shorelineMasks(svg){
 function drawContinentalCourses(svg,maskOldBank){
   for(const [key,area] of areaRegistry){
     const id=area.sheet||key,sheet=ATLAS.sheets[id];
-    if(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni"].includes(id))continue;
+    if(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni","stiny"].includes(id))continue;
     if(!sheet.paths1340?.length || (area.variant && $("area").value!==key && !area.variantPaths) || (state.scale<area.minimum && $("area").value!==key))continue;
     for(const shape of sheet.paths1340){
       const q=placesByArea.get(key)?.get(shape.name);
@@ -167,7 +167,7 @@ function visibleJoins(){
   return (window.NAVAZNOSTI||[]).filter(j=>j.x<right&&j.y<bottom&&j.x+j.w/j.d>left&&j.y+j.h/j.d>top);
 }
 function drawJoins(container){
-  const visible=visibleJoins();
+  const visible=visibleJoins().filter(j=>!(window.CONTINUOUS_TARA && isStyled() && j.id==="tiche-vody"));
   for(const el of container.querySelectorAll("[data-join]"))if(!visible.some(j=>j.id===el.dataset.join))el.remove();
   for(const j of visible){
     let svg=container.querySelector('[data-join="'+j.id+'"]');
@@ -196,6 +196,7 @@ function drawJoins(container){
     const choice=container.querySelector('[data-area="'+$("area").value+'"]');
     const chart=choice&&ATLAS.regions[choice.dataset.area];
     svg.style.zIndex=styled && container.querySelector('[data-area="dalavy"]')?89:chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
+    if(styled && window.CONTINUOUS_TARA && j.id==="ellion")svg.style.zIndex=89;
     if(styled){
       const ground=svg.querySelector("g > image");
       ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111q");
@@ -223,7 +224,7 @@ function regionalTiles(state,container,map,project){
   if(state.id==="tara" && isRedraw()) for(const [key,area] of areaRegistry){
     const chosen=!(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni","stiny"].includes(key)) && document.getElementById("area").value===key;
     const id=area.sheet||key,sheet=ATLAS.sheets[id];
-    if(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni"].includes(id))continue;
+    if(window.CONTINUOUS_TARA && isStyled() && ["dalavy","severozapad","horni","stiny"].includes(id))continue;
     const coastOnly=!chosen && state.scale<area.minimum;
     if(!area.overlay || (!chosen && area.variant) || coastOnly || !area.clip.length) continue;
     const layer=area.linework?"list":id==="dalavy"?"atlas":"sketch", levels=sheet.levels[layer];

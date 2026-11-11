@@ -1,0 +1,23 @@
+{
+  "author": "Jana Žižková",
+  "features": 137,
+  "named_sites": 65,
+  "geometry_shared": true,
+  "scope": "entire registered Stiny jihu sheet",
+  "layers": {
+    "illustrations": 5,
+    "settlements": 106,
+    "details": 1698,
+    "relief": 9275,
+    "trees": 3074
+  },
+  "version": "20261111s",
+  "source": "Krajiny za obzorem – Stíny jihu",
+  "city_sprites": "Generated illustrative city types based on source legend; not architectural canon.",
+  "hydrography": "Source colour boundaries; source lettering removed from water classification.",
+  "named_locations": "Shared canonical index positions, also for cross-sheet records.",
+  "finer_sites_included": 106,
+  "calibrated_bank": "Existing Ellion and northern Tiche vody bank integrated in the common geometry; Ellion continues north outside the reconstructed sheet.",
+  "additional_source": "Tarosská doména – Lví řev, registered detail; author not recorded in the current source inventory.",
+  "water_rendering": "Native source contours with quadratic smoothing, manual Hari links beneath city artwork, and fixed signed-distance transitions to calibrated bank geometry."
+}

@@ -3,7 +3,7 @@ function unifiedTaraPlaces(coarse,regional){
  const all=[...coarse,...regional],byPoint=new Map(),byOrigin=new Map();
  const generic=/^(pevnost|hlídka|ostrov|most|věž|vesnice|tábor|sídlo ptačího lidu|podvodní strážnice)(\s*\(|$)/iu;
  const editorial=/^(výřez |přehled$|severní |jižní |severovýchodní$|jihozápad|jihovýchod|u srubu$|.*zákres$|varianta |oblast$|ostrov$|kasíno$)/iu;
- const simple=n=>mapName(n).replace(/^šakatan$/u,'šakatán').replace(/^zur['’]k$/u,'zurk').replace(/^tisíce jeskyní$/u,'tisíc jeskyní').replace(/^ostrov polnoc$/u,'polnoc');
+ const simple=n=>mapName(n).replace(/^bulzugův ostrov$/u,'buzulgův ostrov').replace(/^šakatan$/u,'šakatán').replace(/^zur['’]k$/u,'zurk').replace(/^tisíce jeskyní$/u,'tisíc jeskyní').replace(/^ostrov polnoc$/u,'polnoc');
  const base=n=>generic.test(n)?simple(n):simple(n.replace(/\s*\([^)]*\)/gu,'').replace(/\s+/g,' ').trim());
  const hasLocal=n=>[...n.matchAll(/\(([^)]*)\)/gu)].some(m=>!editorial.test(m[1]));
  const family=p=>['sidlo','mesto','mistni'].includes(p.type)?'place':p.type;
