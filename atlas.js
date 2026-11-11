@@ -75,6 +75,7 @@ for(const place of onTara){
  placesByArea.get(place.registration).set(place.name,place);
 }
 const representatives=groupPlaces(onTara);
+const placeIndex=unifiedTaraPlaces(points.filter(p=>p.id==="tara"),onTara);
 const extentTara=Math.max(sheets.tara.w,...areaRegistry.filter(([,r])=>r.inset)
   .flatMap(([,r])=>r.clip.map(([x,y])=>continentalPosition(r,x,y)[0]+15)));
 const regionLayer=document.createElement("div");regionLayer.id="regionTiles";regionLayer.setAttribute("aria-hidden","true");tileLayer.after(regionLayer);
@@ -163,7 +164,7 @@ function go(p){
   for(const [id,detail] of Object.entries(sheets)){
     if(detail.parentSheet===p.id && (!detail.parentPlace || detail.parentPlace===p.name))ids.add(id);
   }
-  const continental=onTara.find(q=>q.origin===p);
+  const continental=placeIndex.resolve(onTara.find(q=>q.origin===p));
   if(continental){
     const button=document.createElement("button");button.textContent="Ukázat v překresu celé Tary";
     button.onclick=()=>{rememberSheet("tara");hideDetail();returnToRedraw();center("tara",continental.x,continental.y,Math.max(6,continental.min*1.5));results();draw();};
@@ -191,12 +192,14 @@ function go(p){
   $("detail").hidden=false;$("search").value="";$("search").blur();results();draw();
 }
 function inspectOnTara(place, recenter=true){
+  place=placeIndex.resolve(place);
+  if(!place.origin){go(place);return;}
   const ref=place.origin,previous={x:state.x,y:state.y,scale:state.scale};
   // Obsah karty patří místní předloze, souřadnice pohledu patří Taře.
   go(ref);
   if(trail.at(-1)?.id==="tara")trail.pop();
   backButton.hidden=!trail.length;
-  returnToRedraw();state.selected=place;
+  returnToRedraw();state.selected=place;$("dn").textContent=place.name;
   const registration=ATLAS.regions[place.registration];
   const detailScale=Math.min(100000,Math.max(place.min*1.6,registration.minimum,.95/registration.transform[0],8));
   center("tara",recenter?place.x:previous.x,recenter?place.y:previous.y,recenter?detailScale:previous.scale);
@@ -207,7 +210,8 @@ function inspectOnTara(place, recenter=true){
 }
 function results(){
  const q=fold($("search").value.trim());
- const chosen=q?points.filter(p=>fold(p.name).includes(q) || Object.entries(oldNames[p.id]||{}).some(([old,name])=>name===p.name&&fold(old).includes(q))).sort((a,b)=>(fold(b.name)===q)-(fold(a.name)===q)||(b.id===state.id)-(a.id===state.id)):points.filter(p=>p.id===state.id);
+ let chosen=q?points.filter(p=>fold(p.name).includes(q) || Object.entries(oldNames[p.id]||{}).some(([old,name])=>name===p.name&&fold(old).includes(q))).sort((a,b)=>(fold(b.name)===q)-(fold(a.name)===q)||(b.id===state.id)-(a.id===state.id)):points.filter(p=>p.id===state.id);
+ if(state.id==="tara" && isRedraw())chosen=[...new Set(chosen.map(p=>placeIndex.resolve(p)))].sort((a,b)=>Number(!!b.origin)-Number(!!a.origin));
  const out=$("results");out.replaceChildren();
  if(!q){
    for(const [id,child] of Object.entries(sheets)){
@@ -234,7 +238,7 @@ function results(){
  for(const p of chosen){
   const b=document.createElement("button");b.className="result";b.dataset.sheet=p.id;const a=document.createElement("strong");a.textContent=p.name;
   const sub=document.createElement("span");sub.textContent=kinds[p.type]+" · "+(p.hypothesis?"NaS · poloha hypotetická":sheets[p.id].title);b.append(a,sub);b.onclick=()=>{
-    const placed=state.id==="tara" && isRedraw() && onTara.find(q=>q.origin===p);
+    const placed=state.id==="tara" && isRedraw() && (p.origin?p:placeIndex.resolve(onTara.find(q=>q.origin===p)));
     if(placed)inspectOnTara(placed);else go(p);
   };out.insertBefore(b,q && fold(p.name)===q?firstSheet:null);
  }
@@ -345,49 +349,16 @@ function draw(){
    (p===state.selected && !(facsimile && state.mode==="list")) ||
    (state.mode!=="list" && (state.scale>=p.min || (mobileOverview && p.min<=0.7)))));
  if(state.id==="tara" && activeMode==="sketch"){
-   const seen=new Map();
+   // Resolve once across all sheets, before viewport/zoom filtering. A duplicate
+   // must not reappear when the preferred position leaves the viewport.
+   state.selected=placeIndex.resolve(state.selected);
    const chosen=$("area").value;
-   const localNames=new Map();
-   if(chosen){
-     for(const p of onTara)if(p.registration===chosen){
-       const key=mapName(p.name);
-       if(!localNames.has(key))localNames.set(key,[]);
-       localNames.get(key).push(p);
-     }
+   visible.length=0;
+   for(const p of placeIndex.places){
+     if(p!==state.selected && state.scale<p.min)continue;
+     if(p.registration && chosen && ATLAS.regions[p.registration].variant && p.registration!==chosen && p!==state.selected)continue;
+     visible.push(p);
    }
-   const superseded=p=>p!==state.selected && p.registration!==chosen &&
-      localNames.get(mapName(p.name))?.some(local=>Math.hypot(p.x-local.x,p.y-local.y)<
-        Math.max(8,(ATLAS.regions[p.registration]?.residual||0)+(ATLAS.regions[chosen]?.residual||0)+2));
-   for(let i=visible.length-1;i>=0;i--)if(superseded(visible[i]))visible.splice(i,1);
-   if(state.selected?.origin)visible.unshift(state.selected);
-   for(const p of visible){if(!seen.has(p.name))seen.set(p.name,[]);seen.get(p.name).push(p);}
-   for(const p of onTara){
-     if(superseded(p))continue;
-     const other=representatives.get(p);
-     if(other!==p && state.scale>=other.min && chosen!==p.registration && state.selected!==p &&
-        Math.hypot(p.x-other.x,p.y-other.y)*state.scale<36)continue;
-     if(chosen && ATLAS.regions[p.registration].variant && p.registration!==chosen)continue;
-     if(state.scale<p.min || Math.abs(p.x-state.x)*state.scale>w/2+10 || Math.abs(p.y-state.y)*state.scale>h/2+10)continue;
-     const near=seen.get(p.name)||[];
-     if(near.some(q=>Math.hypot(q.x-p.x,q.y-p.y)*state.scale<36))continue;
-     near.push(p);seen.set(p.name,near);visible.push(p);
-   }
- }
- if(styled && state.id==="tara"){
-   // Resolve labels after checking visibility: at the edge of the viewport
-   // the coarser sheet may be the only one that can name a location.
-   const chosen=$("area").value,names=new Map();
-   const rank=p=>ATLAS.regions[p.registration]?.transform[0]??Infinity;
-   visible.sort((a,b)=>(b===state.selected)-(a===state.selected) ||
-     Number(b.registration===chosen)-Number(a.registration===chosen) || rank(a)-rank(b));
-   const unique=visible.filter(p=>{
-     const name=mapName(p.name).replace(/^tisíce jeskyní$/u,"tisíc jeskyní").replace(/^ostrov polnoc$/u,"polnoc"),matches=names.get(name)||[];
-     const reach=({kraj:85,vrch:46,les:42,voda:75,tok:36,jezero:36,ostrov:42})[p.type]||12;
-     const near=matches.some(q=>q.id!==p.id && Math.hypot(q.x-p.x,q.y-p.y)<reach);
-     if(near)return false;
-     matches.push(p);names.set(name,matches);return true;
-   });
-   visible.length=0;visible.push(...unique);
  }
  visible.sort((a,b)=>(b===state.selected)-(a===state.selected)||a.min-b.min);
  for(const p of visible){
