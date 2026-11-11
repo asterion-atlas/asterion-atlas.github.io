@@ -424,7 +424,7 @@ function draw(){
    $("credit").textContent=inset?sheets[inset[0]].title+" · vložená mapa, poloha na Taře nedoložena":"Vložené mapy mimo zeměpisný rám Tary";
    document.querySelector(".scale").hidden=true;
  }
- const areaKey=state.id==="tara" && activeMode==="sketch" && ($("area").value ||
+ const areaKey=state.id==="tara" && activeMode==="sketch" && (window.NORTH_FINE && continuousSourceAtCenter() || $("area").value ||
    [...regionLayer.querySelectorAll("[data-area]")].filter(group=>{
      const a=ATLAS.regions[group.dataset.area],k=a.transform[0];
      const [x,y]=fromAreaAxes(a,(state.x-a.transform[1])/k,(state.y-a.transform[2])/k);
@@ -434,7 +434,7 @@ function draw(){
  const source=sheets[sourceId];
  if(source && !cc3 && !(state.id==="tara" && state.x>s.w)){
    const credit=$("credit");
-   credit.textContent=(styled?(["s","d"].includes(state.mode)?((sourceId==="dalavy"||!!window.WESTERN_TILES?.[sourceId]||(sourceId==="nekromanti"&&window.CONTINUOUS_TARA&&state.id==="tara"&&state.x>=144&&state.x<=201&&state.y>=499&&state.y<=546))?(state.mode==="d"?"Styl D · Herwin Wielink / ProFantasy · ":"Varianta S · Mike Schley / ProFantasy · "):"Dálavský styl (mimo rozsah "+state.mode.toUpperCase()+") · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
+   credit.textContent=(styled?(["s","d"].includes(state.mode)?((sourceId==="dalavy"||(!!window.WESTERN_TILES?.[sourceId]||window.NORTH_SOURCES?.includes(sourceId))||(sourceId==="nekromanti"&&window.CONTINUOUS_TARA&&state.id==="tara"&&state.x>=144&&state.x<=201&&state.y>=499&&state.y<=546))?(state.mode==="d"?"Styl D · Herwin Wielink / ProFantasy · ":"Varianta S · Mike Schley / ProFantasy · "):"Dálavský styl (mimo rozsah "+state.mode.toUpperCase()+") · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
    const link=document.createElement("a");
    link.textContent="Pramen";link.title=source.title;link.href=source.url||"https://asterionrpg.cz/index.php/mapy.html";
    if(source.url){link.target="_blank";link.rel="noopener";}
