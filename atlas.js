@@ -79,8 +79,9 @@ const extentTara=Math.max(sheets.tara.w,...areaRegistry.filter(([,r])=>r.inset)
   .flatMap(([,r])=>r.clip.map(([x,y])=>continentalPosition(r,x,y)[0]+15)));
 const regionLayer=document.createElement("div");regionLayer.id="regionTiles";regionLayer.setAttribute("aria-hidden","true");tileLayer.after(regionLayer);
 const styledSheets=new Set(window.DALAVSKY);
-const isRedraw=()=>state.mode==="sketch" || state.mode==="dalavsky";
-const returnToRedraw=()=>{if(state.mode!=="dalavsky")state.mode="sketch";};
+const isStyled=()=>state.mode==="dalavsky" || state.mode==="s";
+const isRedraw=()=>state.mode==="sketch" || isStyled();
+const returnToRedraw=()=>{if(!isStyled())state.mode="sketch";};
 const hasSketch = id => Boolean(sheets[id].levels.sketch || ["tara","lendor","svet","dalavy"].includes(id));
 for(const [id,area] of areaRegistry){
   const title=sheets[area.sheet||id].title+(area.sheet?" · "+({
@@ -291,7 +292,7 @@ function draw(){
  const s=sheets[state.id], size=ATLAS.tile, w=map.clientWidth,h=map.clientHeight;
  if(!w||!h)return;
  state.x=Math.max(0,Math.min(state.id==="tara" && isRedraw()?extentTara:s.w,state.x));state.y=Math.max(state.id==="tara"&&isRedraw()?-65:0,Math.min(s.h,state.y));
- const styled=state.mode==="dalavsky" && styledSheets.has(state.id);
+ const styled=isStyled() && styledSheets.has(state.id);
  const activeMode=styled?"sketch":(state.mode==="cc3" && !s.levels.cc3 || isRedraw() && !hasSketch(state.id)) ? "atlas" : isRedraw()?"sketch":state.mode;
  const cc3=activeMode==="cc3";
  $("area").hidden=state.id!=="tara";$("areaLabel").hidden=state.id!=="tara";
@@ -300,12 +301,13 @@ function draw(){
  const layer=cc3 ? "cc3" : activeMode==="sketch" ? (s.levels.sketch?"sketch":"atlas") : facsimile || s.raster || state.id==="albireo" ? "list" : activeMode;
  const levels=s.levels[layer] || s.levels.list;
  map.dataset.facsimile=String(facsimile);
- map.dataset.mode=styled?"dalavsky":activeMode;
+ map.dataset.mode=styled?state.mode:activeMode;
  $("dalavskyMode").hidden=!styledSheets.has(state.id);
+ $("sMode").hidden=!styledSheets.has(state.id);
  $("cc3Mode").hidden=!s.levels.cc3;
  $("sketchMode").hidden=!hasSketch(state.id);
  $("nativeZoom").hidden=!(cc3 || activeMode==="sketch" || isDalavy(state.id) || s.raster);
- for(const m of ["cc3","atlas","list","sketch","dalavsky"])$(m+"Mode").setAttribute("aria-pressed",String(m===map.dataset.mode));
+ for(const m of ["cc3","atlas","list","sketch","dalavsky","s"])$(m+"Mode").setAttribute("aria-pressed",String(m===map.dataset.mode));
  const desired=(facsimile ? (window.devicePixelRatio||1) : Math.min(2,window.devicePixelRatio||1))*state.scale*s.w;
  let z=levels.findIndex(pair=>pair[0]>=desired);if(z<0)z=levels.length-1;
  const [pw,ph]=levels[z];const sx=state.scale*s.w/pw, sy=facsimile ? state.scale*s.w*s.native[1]/(s.native[0]*ph) : state.scale*s.h/ph;
@@ -460,7 +462,7 @@ function draw(){
  const source=sheets[sourceId];
  if(source && !cc3 && !(state.id==="tara" && state.x>s.w)){
    const credit=$("credit");
-   credit.textContent=(styled?"Dálavský styl · ":activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
+   credit.textContent=(styled?(state.mode==="s"?(sourceId==="dalavy"?"Varianta S · Mike Schley / ProFantasy · ":"Dálavský styl (mimo rozsah S) · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
    const link=document.createElement("a");
    link.textContent="Pramen";link.title=source.title;link.href=source.url||"https://asterionrpg.cz/index.php/mapy.html";
    if(source.url){link.target="_blank";link.rel="noopener";}
@@ -557,6 +559,7 @@ map.addEventListener("keydown",e=>{
 $("sheet").onchange=e=>fit(e.target.value);$("search").oninput=results;
 $("plus").onclick=()=>zoom(1.5);$("minus").onclick=()=>zoom(1/1.5);$("fit").onclick=()=>fit(state.id);
 $("dalavskyMode").onclick=()=>mode("dalavsky");
+$("sMode").onclick=()=>mode("s");
 $("sketchMode").onclick=()=>mode("sketch");
 $("cc3Mode").onclick=()=>mode("cc3");
 $("nativeZoom").onclick=()=>{
@@ -625,3 +628,5 @@ else if(!$("south").hidden && query.get("jih")==="1")$("south").click();
 if(query.get("predloha")==="1" && initialSheet)mode("list");
 
 if(query.get("styl")==="dalavsky" && styledSheets.has(state.id) && query.get("predloha")!=="1")mode("dalavsky");
+
+if(query.get("styl")==="s" && styledSheets.has(state.id) && query.get("predloha")!=="1")mode("s");

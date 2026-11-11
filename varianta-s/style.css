@@ -1,0 +1,5 @@
+#map[data-mode="s"] .course:not(:hover):not(.active){stroke:transparent;fill:none}
+#map[data-mode="s"] #labels [data-sheet="dalavy"]{color:#202d21;text-shadow:0 1px 2px #f7f4d8,1px 0 2px #f7f4d8,-1px 0 2px #f7f4d8;font-style:italic}
+#map[data-mode="s"] #labels [data-sheet="dalavy"].mesto::before,#map[data-mode="s"] #labels [data-sheet="dalavy"].sidlo::before{display:none}
+#map[data-mode="s"] #labels [data-sheet="dalavy"].point-only::before{display:block}
+#map[data-mode="s"] #labels [data-sheet="dalavy"].selected{background:#fff8dd;color:#202d21}

@@ -129,9 +129,12 @@ function reliefVectors(id,key,sheet){
   return svg;
 }
 function styledImage(group,id,box,pixelsPerUnit){
+  const useS=state.mode==="s" && id==="dalavy";
+  if(useS){group.querySelector("img[data-styled]")?.remove();schleyTiles(group,id,box);return;}
+  group.querySelector("[data-s-map]")?.remove();
   let image=group.querySelector("img[data-styled]");
   if(!image){image=new Image();image.alt="";image.draggable=false;group.append(image);}
-  const src="dalavsky/"+id+".svg?v=20261111j";
+  const src="dalavsky/"+id+".svg?v=20261111k";
   if(image.getAttribute("src")!==src){image.dataset.styled=id;image.src=src;}
   Object.assign(image.style,box);
 }
@@ -165,7 +168,7 @@ function drawJoins(container){
   for(const el of container.querySelectorAll("[data-join]"))if(!visible.some(j=>j.id===el.dataset.join))el.remove();
   for(const j of visible){
     let svg=container.querySelector('[data-join="'+j.id+'"]');
-    const styled=state.mode==="dalavsky";
+    const styled=isStyled();
     if(svg && svg.dataset.styled!==String(styled)){svg.remove();svg=null;}
     if(!svg){
       svg=svgElement("svg",{"aria-hidden":"true",preserveAspectRatio:"none"});
@@ -192,7 +195,7 @@ function drawJoins(container){
     svg.style.zIndex=styled && container.querySelector('[data-area="dalavy"]')?89:chart&&!chart.variant&&chart.transform[0]>=.012?Math.max(95,Number(choice.style.zIndex)+1):95;
     if(styled){
       const ground=svg.querySelector("g > image");
-      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111j");
+      ground.setAttribute("href","dalavsky/spoj-"+j.id+".svg?v=20261111k");
     }
     svg.setAttribute("viewBox",[(left-j.x)*j.d,(top-j.y)*j.d,map.clientWidth*scale,map.clientHeight*scale].join(" "));
   }
@@ -219,7 +222,7 @@ function regionalTiles(state,container,map,project){
     const coastOnly=!chosen && state.scale<area.minimum;
     if(!area.overlay || (!chosen && area.variant) || coastOnly || !area.clip.length) continue;
     const layer=area.linework?"list":id==="dalavy"?"atlas":"sketch", levels=sheet.levels[layer];
-    const styled=state.mode==="dalavsky";
+    const styled=isStyled();
     if(styled?!styledSheets.has(id):!levels)continue;
     const [k,ox,oy]=area.transform, scale=state.scale*k;
     const [x,y]=project({x:ox,y:oy});
@@ -228,8 +231,8 @@ function regionalTiles(state,container,map,project){
     if(corners.every(p=>p[0]<0)||corners.every(p=>p[1]<0)||corners.every(p=>p[0]>map.clientWidth)||corners.every(p=>p[1]>map.clientHeight))continue;
     needed.add(key);
     let group=container.querySelector('[data-area="'+key+'"]');
-    if(group && group.dataset.styled!==String(styled)){group.remove();group=null;}
-    if(!group){group=document.createElement("div");group.dataset.styled=String(styled);group.dataset.area=key;container.append(group);}
+    if(group && group.dataset.styled!==(styled?state.mode:"false")){group.remove();group=null;}
+    if(!group){group=document.createElement("div");group.dataset.styled=styled?state.mode:"false";group.dataset.area=key;container.append(group);}
     const sw=sheet.w*scale,sh=sheet.h*scale;
     Object.assign(group.style,{left:x+"px",top:y+"px",width:sw+"px",height:sh+"px",
       clipPath:"polygon("+((styled && window.DALAVSKE_CLIPS?.[key]) || area.clip).map(([a,b])=>(100*a/sheet.w)+"% "+(100*b/sheet.h)+"%").join(",")+")",
