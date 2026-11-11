@@ -270,6 +270,10 @@ function renderCourses(sheet){
  for(const shape of sheet.paths1340){
    const name=shape.name;
    const active=state.selected?.name===name;
+   // The styled continental tiles already contain the registered waterways.
+   // The old Tara overview trace is coarser and can end halfway through a
+   // forest. Do not draw it over the detailed surface at any zoom.
+   if(state.id==="tara" && isStyled() && window.CONTINUOUS_TARA && !active)continue;
    if(!active && (state.scale<.64 || shape.type==="plocha"))continue;
    const path=document.createElementNS(svg.namespaceURI,["obrys","plocha"].includes(shape.type)?"polygon":"polyline");
    path.setAttribute("points",shape.points.map(p=>p.join(",")).join(" "));
