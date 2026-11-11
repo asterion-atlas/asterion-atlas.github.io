@@ -3,6 +3,9 @@ window.NORTH_SOURCES=['torgil','mistr-z','torgil-laborator','sarindar-rez','seve
 function northDetail(state,container,map,project){
  const enabled=state.id==='tara'&&isStyled(),used=new Set();
  if(enabled&&state.scale>14)for(const [order,c] of NORTH_FINE.entries()){
+  // The sparse adventure sheet contributes surveyed objects to Tara.
+  // Its paper/river buffer must never replace the continental jungle.
+  if(c.area==='kvetina'&&window.CONTINUOUS_TARA)continue;
   const [k,ox,oy]=c.region.transform,b=areaBasis(c.region),[x0,y0,x1,y1]=c.box,sw=x1-x0,sh=y1-y0;
   const [left,top]=project({x:ox+k*(b[0]*x0+b[2]*y0),y:oy+k*(b[1]*x0+b[3]*y0)}),s=k*state.scale;
   const corners=[[0,0],[sw,0],[0,sh],[sw,sh]].map(([x,y])=>[left+s*(b[0]*x+b[2]*y),top+s*(b[1]*x+b[3]*y)]);
