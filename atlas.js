@@ -79,7 +79,7 @@ const extentTara=Math.max(sheets.tara.w,...areaRegistry.filter(([,r])=>r.inset)
   .flatMap(([,r])=>r.clip.map(([x,y])=>continentalPosition(r,x,y)[0]+15)));
 const regionLayer=document.createElement("div");regionLayer.id="regionTiles";regionLayer.setAttribute("aria-hidden","true");tileLayer.after(regionLayer);
 const styledSheets=new Set(window.DALAVSKY);
-const isStyled=()=>state.mode==="dalavsky" || state.mode==="s";
+const isStyled=()=>state.mode==="dalavsky" || state.mode==="s" || state.mode==="d";
 const isRedraw=()=>state.mode==="sketch" || isStyled();
 const returnToRedraw=()=>{if(!isStyled())state.mode="sketch";};
 const hasSketch = id => Boolean(sheets[id].levels.sketch || ["tara","lendor","svet","dalavy"].includes(id));
@@ -304,10 +304,11 @@ function draw(){
  map.dataset.mode=styled?state.mode:activeMode;
  $("dalavskyMode").hidden=!styledSheets.has(state.id);
  $("sMode").hidden=!styledSheets.has(state.id);
+ $("dMode").hidden=!styledSheets.has(state.id);
  $("cc3Mode").hidden=!s.levels.cc3;
  $("sketchMode").hidden=!hasSketch(state.id);
  $("nativeZoom").hidden=!(cc3 || activeMode==="sketch" || isDalavy(state.id) || s.raster);
- for(const m of ["cc3","atlas","list","sketch","dalavsky","s"])$(m+"Mode").setAttribute("aria-pressed",String(m===map.dataset.mode));
+ for(const m of ["cc3","atlas","list","sketch","dalavsky","s","d"])$(m+"Mode").setAttribute("aria-pressed",String(m===map.dataset.mode));
  const desired=(facsimile ? (window.devicePixelRatio||1) : Math.min(2,window.devicePixelRatio||1))*state.scale*s.w;
  let z=levels.findIndex(pair=>pair[0]>=desired);if(z<0)z=levels.length-1;
  const [pw,ph]=levels[z];const sx=state.scale*s.w/pw, sy=facsimile ? state.scale*s.w*s.native[1]/(s.native[0]*ph) : state.scale*s.h/ph;
@@ -462,7 +463,7 @@ function draw(){
  const source=sheets[sourceId];
  if(source && !cc3 && !(state.id==="tara" && state.x>s.w)){
    const credit=$("credit");
-   credit.textContent=(styled?(state.mode==="s"?(sourceId==="dalavy"?"Varianta S · Mike Schley / ProFantasy · ":"Dálavský styl (mimo rozsah S) · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
+   credit.textContent=(styled?(["s","d"].includes(state.mode)?(sourceId==="dalavy"?(state.mode==="d"?"Styl D · Herwin Wielink / ProFantasy · ":"Varianta S · Mike Schley / ProFantasy · "):"Dálavský styl (mimo rozsah "+state.mode.toUpperCase()+") · "):"Dálavský styl · "):activeMode==="sketch"?"Překres · ":"")+source.title+(source.author?" · předloha "+source.author:"")+(sourceId==="tara"?" · jih podle KO2c":"")+" · ";
    const link=document.createElement("a");
    link.textContent="Pramen";link.title=source.title;link.href=source.url||"https://asterionrpg.cz/index.php/mapy.html";
    if(source.url){link.target="_blank";link.rel="noopener";}
@@ -560,6 +561,7 @@ $("sheet").onchange=e=>fit(e.target.value);$("search").oninput=results;
 $("plus").onclick=()=>zoom(1.5);$("minus").onclick=()=>zoom(1/1.5);$("fit").onclick=()=>fit(state.id);
 $("dalavskyMode").onclick=()=>mode("dalavsky");
 $("sMode").onclick=()=>mode("s");
+$("dMode").onclick=()=>mode("d");
 $("sketchMode").onclick=()=>mode("sketch");
 $("cc3Mode").onclick=()=>mode("cc3");
 $("nativeZoom").onclick=()=>{
@@ -630,3 +632,5 @@ if(query.get("predloha")==="1" && initialSheet)mode("list");
 if(query.get("styl")==="dalavsky" && styledSheets.has(state.id) && query.get("predloha")!=="1")mode("dalavsky");
 
 if(query.get("styl")==="s" && styledSheets.has(state.id) && query.get("predloha")!=="1")mode("s");
+
+if(query.get("styl")==="d" && styledSheets.has(state.id) && query.get("predloha")!=="1")mode("d");

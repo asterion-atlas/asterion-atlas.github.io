@@ -129,9 +129,10 @@ function reliefVectors(id,key,sheet){
   return svg;
 }
 function styledImage(group,id,box,pixelsPerUnit){
-  const useS=state.mode==="s" && id==="dalavy";
-  if(useS){group.querySelector("img[data-styled]")?.remove();schleyTiles(group,id,box);return;}
-  group.querySelector("[data-s-map]")?.remove();
+  const variant=["s","d"].includes(state.mode) && id==="dalavy"?state.mode:null;
+  if(variant!=="s")group.querySelector("[data-s-map]")?.remove();
+  if(variant!=="d")group.querySelector("[data-d-map]")?.remove();
+  if(variant){group.querySelector("img[data-styled]")?.remove();(variant==="s"?schleyTiles:wielinkTiles)(group,id,box);return;}
   let image=group.querySelector("img[data-styled]");
   if(!image){image=new Image();image.alt="";image.draggable=false;group.append(image);}
   const src="dalavsky/"+id+".svg?v=20261111k";
