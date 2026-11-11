@@ -7,7 +7,7 @@
   "symbols_textures": "Mike Schley / ProFantasy",
   "generated_figures": 8,
   "pack_assets": 45,
-  "symbol_instances": 4292,
+  "symbol_instances": 4803,
   "geometry_preserved": true,
   "levels": [
     [
@@ -28,107 +28,107 @@
   "tiles": [
     {
       "path": "tiles/0/0-0.webp",
-      "sha256": "b4e182aefe7feb95093cb70021878df08d8834c2c1bda730ba3734f5f48ca65c"
+      "sha256": "3061a79abba914985520f1b35609d2d596bd83c5e3e0f0bf0cac242753ef71e3"
     },
     {
       "path": "tiles/0/1-0.webp",
-      "sha256": "06c1f54a9c427a9d49fca5e9ee4260eb59d8a58f8e0e2bba9b757d81ba7611e1"
+      "sha256": "7bf45f6d2be9b62f81c344f73c1e004a144987b5f97117f9d91c052872ccc7df"
     },
     {
       "path": "tiles/0/0-1.webp",
-      "sha256": "12f7b474ef94d7701689cb37a40e102e798a486c5e96bef0377cd4e9709870f9"
+      "sha256": "cf02429908b08e7377fdef5a4dce23fe1dec1c7616cadfeac83d1c9898f0f95d"
     },
     {
       "path": "tiles/0/1-1.webp",
-      "sha256": "20ff26b8a73bf00c319703c6cc6aec0605fe0d436606893bfe43ced8eb42d416"
+      "sha256": "150396a88598adb926e4d5e8c19a7c2fac034b6ce22c7f7a6bd4b64e3e584bac"
     },
     {
       "path": "tiles/0/0-2.webp",
-      "sha256": "cead9491786e2a14ec5487cecd242eb6ffb7107500aed3d4d63fb878f3b752e8"
+      "sha256": "4f0e7be8c4eba44c79abdc188fcd3940aa8c5e3641930c58440c4cc9f5592c33"
     },
     {
       "path": "tiles/0/1-2.webp",
-      "sha256": "40ad1b9ee9763e9d6b82bacadae5bd93607c2108df5ce9684b28c1be3f72f033"
+      "sha256": "d3758c00856c139016b220041f798bfed1b0255fe567afcd0f05f447505dfcef"
     },
     {
       "path": "tiles/1/0-0.webp",
-      "sha256": "eef7c6a688fbb738042c01f38dd4968fd9bba87aa29830ba494ce0254682167b"
+      "sha256": "7d054eb8295de2cc6fcfd4b794a3fd6226419f74ed9a9e68088f0f69b7cc10a3"
     },
     {
       "path": "tiles/1/1-0.webp",
-      "sha256": "275b48681df8ef548b8c3528cea1964aa07581ebb364bec534b6b37f42ed2faa"
+      "sha256": "ffb24d936dbfb1d248967ffb7167c2218983ff52d91617b2b51aa7f812973d73"
     },
     {
       "path": "tiles/1/2-0.webp",
-      "sha256": "26d2c5d6e5da9b3ab408f880f52db9c062b97982f7aa737963e10c5a8e907630"
+      "sha256": "8183b866dbaea49fb21c29b895ca5be7ac0b509527044763b0936402220cf0e2"
     },
     {
       "path": "tiles/1/3-0.webp",
-      "sha256": "9b933319d20c8f1ce18a60dfbc9c8e4ea08f5df9af8762a5e96b37b75f6557dc"
+      "sha256": "37c64a582b93c57102a4d05471c4c90a4aa46e0df79089214e02064178fd2881"
     },
     {
       "path": "tiles/1/0-1.webp",
-      "sha256": "e8d44704ca34d196eedffa93367686de1cfeffc1866da00e0561735cb5f7d994"
+      "sha256": "06f71107ddaebeb1f5848eaa502fc63fdfd7410dfb8b0376d46f0c5001332502"
     },
     {
       "path": "tiles/1/1-1.webp",
-      "sha256": "f83e127c274d72fd44841a037cb7daff294461bfd1b5b34b6a3983af9d78d93f"
+      "sha256": "496fcb14791b07a91afcfb52db7e9819383356351ed6a0287172d436604d30cf"
     },
     {
       "path": "tiles/1/2-1.webp",
-      "sha256": "cf2e3f4cd0391c7e01345e4866ab504f6bfdf325ddebef7b4bc7bd3eff6210b7"
+      "sha256": "6fb606d19c70eae429ed4d4d255338fe2acb580408254f2ee55336409768db8c"
     },
     {
       "path": "tiles/1/3-1.webp",
-      "sha256": "3ece4b1c04fd43df9dd0cba14afeddcef120edd7581aecf729918a32fc7fa1be"
+      "sha256": "290074f38637c53deffae9ab5c66bd016cd07af58ff54dc367986b1c1bd9aafb"
     },
     {
       "path": "tiles/1/0-2.webp",
-      "sha256": "c8f852703bcc46fa4206d57869e6c720157c2d35b68f4cbc4bd22c9c3caeb7eb"
+      "sha256": "ff2e411213cc595cb8cac0d429b858c12793d06b4406d30cef55030fa88f8b10"
     },
     {
       "path": "tiles/1/1-2.webp",
-      "sha256": "75f7186c7ca1debe4b2b58a7ed32fa9fad39db1ba45ca0269a0412e8ff4a0b5f"
+      "sha256": "0e7153a5ac8f40d9f5242a4efed35d271b3d126b2e321d933c558eb9658ea8a0"
     },
     {
       "path": "tiles/1/2-2.webp",
-      "sha256": "5e4f508006a734012396fabc03f5ac845fe80d432501efb456f6333ba0a07bd1"
+      "sha256": "f2e650b136a838a094688c45f89775333b7e30ec7b9106ae202454af1e8cd1ff"
     },
     {
       "path": "tiles/1/3-2.webp",
-      "sha256": "d0e856c51b629d4a8d108bcecefddd4fb06c4217bdf2ad4fc6ca26e146ff008b"
+      "sha256": "da95bf5a745ad9c368fb7846c4979c268c8d377555d21cce15c04794e9824a2c"
     },
     {
       "path": "tiles/1/0-3.webp",
-      "sha256": "b1a226112b756815c2b63994429aa39dfa3665fb28c0f6d36e340c266e9f869e"
+      "sha256": "aa018e007a8a63b89c7ac36094322ad9133908d2e1d12201a100696612732d46"
     },
     {
       "path": "tiles/1/1-3.webp",
-      "sha256": "dd7d5e1495a8971fda610261b70eb5c768a2b0ebbb43b8431df00996daefd617"
+      "sha256": "95aacfb402617baea987403bfe41590621320e3fa16c813acbfdb6f580ab9b4a"
     },
     {
       "path": "tiles/1/2-3.webp",
-      "sha256": "28bd26043f0fdda4d7e78cd6b346b156fe4a6b2af4c9d179c604295c90f0ee42"
+      "sha256": "7a8dbd5dd49b2de6bc3fc91913b87d8fc34b7cbdb8833b8c95f949d6e55fc605"
     },
     {
       "path": "tiles/1/3-3.webp",
-      "sha256": "dbc67d3c6fe2b0202d0b4f8a0b53e536c658d9bebdd0b3388056f50ba903c93c"
+      "sha256": "a6286e1a739b60ad96c542e6a649993098b2c438bbe3e0ee4d019c08a634ba0c"
     },
     {
       "path": "tiles/1/0-4.webp",
-      "sha256": "6cca259232dcce961eca12a345a5279318b651e377ed0b3a108596fe9605ac4c"
+      "sha256": "cc72ec17a6b0e65649952cf5f38cf2fd6d731eabaaf1774c1aef617e14f4890b"
     },
     {
       "path": "tiles/1/1-4.webp",
-      "sha256": "d351d6870d5529137f968db77bf0ac254322297eb79363d8bb601812ebfacc34"
+      "sha256": "0aed471149c476581ed33bed04952b1611f5724beb4e99cf1385b8789470a295"
     },
     {
       "path": "tiles/1/2-4.webp",
-      "sha256": "02ce35d026dc6cdb5c24264506d5bb37950c6e124f7085edfd1f175514eddba9"
+      "sha256": "73c38afbf53ec7efd411805c09844035ab88f7d09c8bbe74c4ee22ceef00c135"
     },
     {
       "path": "tiles/1/3-4.webp",
-      "sha256": "e81741090d901a93da66924d382e4fe1d7d36b680c5fe494f7c2ebaa01c81ac9"
+      "sha256": "880ec987902ab78a5d01739020cd141af922b6b3e170302faf42a30ae887e797"
     },
     {
       "path": "tiles/2/0-0.webp",
@@ -164,27 +164,27 @@
     },
     {
       "path": "tiles/2/1-1.webp",
-      "sha256": "b9b86daef184fd493c584d6327533f814f819ce0eabbdbc45a0c96dbef52b45d"
+      "sha256": "766c5029fb550dbdd8ca8c9134458402237b3d68e0ac53fd6d2e29e4cf1b2337"
     },
     {
       "path": "tiles/2/2-1.webp",
-      "sha256": "98559dccd23c66c2bbf9d5dd4aadd74a84acc6ed627d66c680e4d710a306d9dd"
+      "sha256": "607465fe859c20d1066797030862cfbd055bb9b0780f72db4a255220af693009"
     },
     {
       "path": "tiles/2/3-1.webp",
-      "sha256": "5e71f5f342607b52238baf29a689c9bfaa37beb879c528dbe25bd76fbff7878d"
+      "sha256": "6e38cf7e47552c77ef75f40a14992b2c4790791011369641d04675855367a999"
     },
     {
       "path": "tiles/2/4-1.webp",
-      "sha256": "96f599e96502e8582b8262d58d423b39450b7b2f1d037707c9307ab0f050e22a"
+      "sha256": "4fff87a58bac2d3d8f175ee549a7c8310c87f0bf1fed344c42d8cfaef5679d0d"
     },
     {
       "path": "tiles/2/5-1.webp",
-      "sha256": "fa0cc09efdb19e57886fd505d32f50012045e68e28fd633412eb89db9f22196d"
+      "sha256": "621cc4b82c13b99c132a8a7789cd5bd9816f3430954e0ffcbe19cf7f73a2df0f"
     },
     {
       "path": "tiles/2/6-1.webp",
-      "sha256": "7efc38a6761159ce1c1ca84730f85bbbded6e60c8ab6a9e003c968ed113a8daa"
+      "sha256": "28c13a9625164eb75c7e15807a96b14696d09e8506d9fe31d7fef3a7d70c23ef"
     },
     {
       "path": "tiles/2/0-2.webp",
@@ -192,27 +192,27 @@
     },
     {
       "path": "tiles/2/1-2.webp",
-      "sha256": "c627579a4b50a0676257cdb1b26977016c144b848564fa01de398a9307260cc3"
+      "sha256": "129faf1a290e530d50156ffef4c5f5d4c35982851444eac369a4429c50155bc9"
     },
     {
       "path": "tiles/2/2-2.webp",
-      "sha256": "37448d30d5636baa63d7ddcaf2359bf1ef22d2eb802c66ebca1a2aeda10ee6fe"
+      "sha256": "817cd598400a03e3ac4083aaac238e221efc7a5a0f11cc462dd202dc85845822"
     },
     {
       "path": "tiles/2/3-2.webp",
-      "sha256": "684be0c696b492ef9fb4414d0a358b4e0307420482c171ed16e053cfdf13913a"
+      "sha256": "2efac5c53fb45fa30c5ce34a197aacf4a81746cb1be0fcb81c526112e6ebf760"
     },
     {
       "path": "tiles/2/4-2.webp",
-      "sha256": "9a7e8547d5569e382de17e46eed14a6b6feaaaba7b6c73d4c81ee9f12ef0ce69"
+      "sha256": "abd7631abc63873467c96191f22a987461fa0735946304ad8a1869a08bd5ffa6"
     },
     {
       "path": "tiles/2/5-2.webp",
-      "sha256": "b3d779fb4ff8aaacc5dd38a45e107c16b978b258f359c4d793c8ed0b9effbe35"
+      "sha256": "62522e5c3862801b65e2041db9c06668e6760701ed21e65de75c10919e5d952e"
     },
     {
       "path": "tiles/2/6-2.webp",
-      "sha256": "0858511c89ebc67b7bac3e11ac1198b58ac50cf942e1e8d795bc91df7fc822d8"
+      "sha256": "e59cb60ee6e7e597823380a96ee57752436df8a1ca47aaf1edf9be9d4cc5953c"
     },
     {
       "path": "tiles/2/0-3.webp",
@@ -220,167 +220,167 @@
     },
     {
       "path": "tiles/2/1-3.webp",
-      "sha256": "684d86a39a7ce7850351a299ffa137edce64d667b41b1f6755eb361eea24caaf"
+      "sha256": "75e64194f601d6c05b5d69ba04ae338b8ce1e4800e01ed644bf2c427b0f86818"
     },
     {
       "path": "tiles/2/2-3.webp",
-      "sha256": "00127e338fc82f4e51fc580a0a400ce26ce78e6089f4c0faa2c2d7383bfea47d"
+      "sha256": "ef95d497950673b0ce447ef3ed1f9d25df83fa443ffc17405b91a2d3b2c8cc70"
     },
     {
       "path": "tiles/2/3-3.webp",
-      "sha256": "50d8379d5222929680bdd85a7298a864d81b05808cbdcbed98b5fb16a86e6abb"
+      "sha256": "ac5ff841e8cd89b311e18f2625aefc2db900ff5675d1ec8ab49952281a0141bb"
     },
     {
       "path": "tiles/2/4-3.webp",
-      "sha256": "edbb19a696a745687ce9996eaaa670655aec42939a48db2f179d56868bd7db76"
+      "sha256": "999349cd12747f18edb1a3a53f77bfc9d0463a1c1b83b01b8328dd64d00dbcb3"
     },
     {
       "path": "tiles/2/5-3.webp",
-      "sha256": "1ff84b515d00edfbdfba358a85ab66141c55bac222fc1bba57ac56d5753e7004"
+      "sha256": "adfdd6e5ee135312896f724c01bbba117d377904d5321f4d2180a8679ffd9bbb"
     },
     {
       "path": "tiles/2/6-3.webp",
-      "sha256": "de86cd83da7bb05615e4db1bdba5a8f8a54afdafdf13eac25c7f9fb7d939b219"
+      "sha256": "02f9f968d076b11500495a0bde12d98033860ec79a7b05ec7fe8968b4858b3c7"
     },
     {
       "path": "tiles/2/0-4.webp",
-      "sha256": "534042571eb8fc0f44e2bbbd86b12f9e2f223c3cc2108023de7931eb0137f92d"
+      "sha256": "5319cb7562bde64c0c3f8de48618067b6bdd558031fc770eedd4ac93f3d0a124"
     },
     {
       "path": "tiles/2/1-4.webp",
-      "sha256": "af2879115f0a06c57a9092c5b6d0a7312e886c3cd9feb2e707b112cba867e9a2"
+      "sha256": "e5f21f96971c5f5002f7c2c90fb06766084bee6f6a9712042d978c7bbe0474f6"
     },
     {
       "path": "tiles/2/2-4.webp",
-      "sha256": "0234f7049602c644e579bdbece1d923199edee9fec4a01f7d6099e0eda0c2c1a"
+      "sha256": "02dde7c5df9ad8707062d827e998b5d3eeaf58e74fde3f3a662130f6919b4a6b"
     },
     {
       "path": "tiles/2/3-4.webp",
-      "sha256": "dc6828caae6a85eb067e9a6306ffbef6d7ec89af8f939d155914b677d9ba1ff7"
+      "sha256": "e4373bdbb92027ffe7928960f8f668f19a2e6a785dd14f55d45f5129381a750c"
     },
     {
       "path": "tiles/2/4-4.webp",
-      "sha256": "7777b29e8edd015b390b20ad686514a072e4bfc1edc3553a72b5012af3a9c666"
+      "sha256": "86e4a01e0babb8c4bb366e25e7a5db9605ec2967489e092b65afbd8735c5b522"
     },
     {
       "path": "tiles/2/5-4.webp",
-      "sha256": "0a9d6b6df4df45d0884b82b7aa2bdd15c679bab1ae23042b7bb6869695fa6ecf"
+      "sha256": "fe5e30d62d852c41944381bb4c21ff18ea0a47db355139646718b5ea85630815"
     },
     {
       "path": "tiles/2/6-4.webp",
-      "sha256": "9463ea2af59517864c6f8102d34d39618bd5b8e12b23a9f2d2c0e2ca93b35c12"
+      "sha256": "c5a2eaaad2acdf7262f8e61612c38befa78834c258479509bd122facb9bb8725"
     },
     {
       "path": "tiles/2/0-5.webp",
-      "sha256": "1fa172bfbba19d1efb18fc70ab35030633cb98860eb57194592c7201e2bd8962"
+      "sha256": "231304547a98425fd8b53fbae27da9a896b8e4fb57062dfd4113c8fbec069559"
     },
     {
       "path": "tiles/2/1-5.webp",
-      "sha256": "904bac7b078530a284af2293f0cab97ce12ca85a60445d26b11cb8fb9de5b536"
+      "sha256": "5ef474c2402b6a242480e4da93d81cac3b61f5b5f9e0e227224b54b2c8e349d2"
     },
     {
       "path": "tiles/2/2-5.webp",
-      "sha256": "f9bcece8a328791cb328d6b2f3e5aaf50a8e2c2b5a14046f1833496c5d2d5a69"
+      "sha256": "0066f3bbdfe57869bde7be425c4287b53dc263d06cbdb8d4986a7dd8403e1f05"
     },
     {
       "path": "tiles/2/3-5.webp",
-      "sha256": "4074010e7e5ef00576feb60b2d982d32d8d48a860f604c928151bdb7011a63e6"
+      "sha256": "a82d1a7211c00997179cb3a6ec213f729cdad9c681b836a33ea4539c990b21f9"
     },
     {
       "path": "tiles/2/4-5.webp",
-      "sha256": "024acaaba9b463ef862a274b5cb72987c6952e13dd4d3f3bee6c0fc237648fb2"
+      "sha256": "23d300bf3a7e4383d3ba7083e7895efe6526b1c9ecb09245c8dbcb1b19117768"
     },
     {
       "path": "tiles/2/5-5.webp",
-      "sha256": "b19957a23f9b892c603f242bdf0e2a0794b490f3dde80bc9f0abcab486da21f1"
+      "sha256": "260b3ecdf8b064b66f1b564cf5c4e7e0c64336284b20a19e70b0f7c79d92b93f"
     },
     {
       "path": "tiles/2/6-5.webp",
-      "sha256": "bcdfd8e9517a45cab0f50d694e01dd3b6fe178d18b2b83254a24123f6c95470f"
+      "sha256": "a22337c2f3942c6f0a89ba8f4bd63395f4f840d863a7bcdc7529e03c674bbd08"
     },
     {
       "path": "tiles/2/0-6.webp",
-      "sha256": "fc03005e1e5fa4592782c703551b4bf156bd3805ac322093de31edb10fbd7230"
+      "sha256": "49802bd866e6ee499ab8054c8e4df6f293f7ff9610e4bbd600db832132798a30"
     },
     {
       "path": "tiles/2/1-6.webp",
-      "sha256": "891f9c24e30ef8a03f787ba993ea93779fe913a0706979b3c6a02b6e3859010e"
+      "sha256": "53d9e0aeabae9179f1a7b0c44a83483ba3564e4c7606be7023105bcdb5923f15"
     },
     {
       "path": "tiles/2/2-6.webp",
-      "sha256": "bc998edda1bdf041f48a9c10300693784c8fcf2eb4d3ae047c2f8683acfd70a5"
+      "sha256": "9952e3f563a994348d909a2e35d528e36bf6bd77858f0876c759901b4e810d86"
     },
     {
       "path": "tiles/2/3-6.webp",
-      "sha256": "f489a3597bd3b557b14b050d61e42b2f0261d90acd2164ce26723ed2607cd68a"
+      "sha256": "f884733197d58e8ea38662c7fcd6d3772ea71337e64a3730f9b914f3e1859bee"
     },
     {
       "path": "tiles/2/4-6.webp",
-      "sha256": "6c8c41be06876ea06606054b0ee563ce4fd86d4084badd173e11f4474558d96b"
+      "sha256": "7e06542d65e99155f459fcc5c5fbfd892fde9d888b4500a99a8da114ecf3c0bc"
     },
     {
       "path": "tiles/2/5-6.webp",
-      "sha256": "b47b80c3cd8c3ec81ab66333b727057b3bf2caea2a3cb9bdb31ab1ef9bec9a4d"
+      "sha256": "0952e8d9a9a083e3d1b495880b60410ee15daa67ce8bc19e4187838ad0ddb028"
     },
     {
       "path": "tiles/2/6-6.webp",
-      "sha256": "98b5bd4cd6c941f9b390373949a142a9a467ed47029525e0033cdcf7a796628f"
+      "sha256": "44fac750d89a086be706ebf3588193f1b563a79904fa6906b9c1e1414fdd30a9"
     },
     {
       "path": "tiles/2/0-7.webp",
-      "sha256": "0840bde40a24bb2a5d6ef91b75d1a9140bf8d0b5d9d660c3e14c05abc99b932a"
+      "sha256": "9821d991b58a6e50844ddad199c65a8410aecbe365ec812243b3b40a0f73c17f"
     },
     {
       "path": "tiles/2/1-7.webp",
-      "sha256": "0cf3ef71e9aed6be519231dfdbbab3e5b89952ee405a7a773249db5878dfe0d3"
+      "sha256": "af71d784cdb2437b3e330198261a59dd0db307095c0618420ea3b88d77287c1f"
     },
     {
       "path": "tiles/2/2-7.webp",
-      "sha256": "4793749bdcafcea65367047cc158e0cad666e13070c4879a31b2e7bb622b8dcf"
+      "sha256": "4e4e448282cdee6b9cde14362030becde281447071a3e11243aede7de8c546d9"
     },
     {
       "path": "tiles/2/3-7.webp",
-      "sha256": "0e973d74b2b55b81b32499630839e1f626e6ba191e40098f6c70be4ff94c816b"
+      "sha256": "e0c81ffbf92833ef15ab7a8ebc126021d779c205de77ff95b594e3268fbda279"
     },
     {
       "path": "tiles/2/4-7.webp",
-      "sha256": "03a8701889d44fcbd2ff74d294c4e0b8ce7687494fcacbd09d6fa22c0bf25445"
+      "sha256": "e64d07b40f3cfd1132c018ba712fd27ec07e63dfe8c0afe25ee1ba479906d0f9"
     },
     {
       "path": "tiles/2/5-7.webp",
-      "sha256": "84d2dabca14308e684e18c3bcd5f3e65d17ccfeed19d19ae3ac6eac35f8d0ad7"
+      "sha256": "7d2e52c2fb18e15fa04ccde446149ad9fe0d50866e1f68566104656b6248e09d"
     },
     {
       "path": "tiles/2/6-7.webp",
-      "sha256": "d5cf3f1436b31180369dbd6e4b19d834ecbd7ad98047ea636a61b2f04652c612"
+      "sha256": "15b4c4df0ccd85536f65d12d63d4f697eb7e3f454e3e742cd6aa29bb9de3d822"
     },
     {
       "path": "tiles/2/0-8.webp",
-      "sha256": "83ad609b080e816695f8d2a0068dc476d4c168d5ed508b78c4798627deba1745"
+      "sha256": "f50a73979bf886cc4e24e062e44283307f4e17aebced22a3aee0b53a2ef4c0d5"
     },
     {
       "path": "tiles/2/1-8.webp",
-      "sha256": "612d1fe4044f6d77027c2cae3818512bcd0baa8be299cf4aae40f35b307262d9"
+      "sha256": "af9fc37816eb84a1ebfcbc43d80a9d24bb18a2ac1ffc28078826abf6388e9396"
     },
     {
       "path": "tiles/2/2-8.webp",
-      "sha256": "559e3b8d4ad7a548fe2032caac5c2726f72861b4cfa4414a12173f0b8097aca4"
+      "sha256": "7a955a6295a686df147fb37d9e1ca0816ce0e3fc9d0fb180e84323f7293c21a7"
     },
     {
       "path": "tiles/2/3-8.webp",
-      "sha256": "6092c61d14eab41bad94abcf14c769348a2cd872a4cf0c0bc8d9c7bfe6a9794d"
+      "sha256": "07c7e060e053959baed8d1ce3f283a85c1b33e6973893ae1e4a46692bee4653d"
     },
     {
       "path": "tiles/2/4-8.webp",
-      "sha256": "36679a8f08ee0ba5a67e650e7c7a0f7adbd68f5fe1a15570dc81c0e5559a7a6f"
+      "sha256": "f2936257aef8da2daf1a30ccd44bd3a29a23cbf1079900ac2abbeb38a1ae1314"
     },
     {
       "path": "tiles/2/5-8.webp",
-      "sha256": "6e929ac6f9573656c3bbcb532404b9cadf9e4bae5204f4c95cd69cc0b1d05cf3"
+      "sha256": "bf4474208aef57b4fbfba61aa38b1d4cf4c6d3b1eb2ca151ed3dda60394b83e2"
     },
     {
       "path": "tiles/2/6-8.webp",
-      "sha256": "f7be2a004627966fd8eeabadc4e9b72691d5a92c209ed070e4a8cfcae60b0716"
+      "sha256": "4093da60665306f27c3d872a521911db04e79f91dbe9026dced682625615bf87"
     },
     {
       "path": "tiles/2/0-9.webp",
