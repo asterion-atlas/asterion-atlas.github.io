@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tara · A+</title>
+  <link rel="stylesheet" href="style.css?v=20261113a1">
+</head>
+<body>
+  <header><a href="../index.html">← Atlas</a><strong>TARA <span>/ A+</span></strong><span class="stage">1 · Pevnina, moře a ostrovy</span></header>
+  <main>
+    <aside>
+      <span class="eyebrow">NOVÝ SPOLEČNÝ ZÁKLAD</span>
+      <h1>Nejdřív obrys.</h1>
+      <p>Schválená pevnina a ostrovy, převzaté se stejným pobřežím.</p>
+      <h2>Vrstvy</h2>
+      <label class="layer"><input id="land" type="checkbox" checked><span class="swatch land"></span>Pevnina a ostrovy</label>
+      <label class="layer"><input id="sea" type="checkbox" checked><span class="swatch sea"></span>Moře</label>
+      <p class="verified" id="verification" role="status">Načítám základ…</p>
+      <p class="help">Tažením mapu posuneš, kolečkem přiblížíš. Šipky mapu posouvají, + a − mění přiblížení.</p>
+      <p class="help">Přerušovaná čára na jihu označuje konec podkladu KO2c.</p>
+      <a class="download" href="geometry.json" download>Stáhnout geometrii A+</a>
+    </aside>
+    <section id="map" tabindex="0" aria-label="Tara A+: pevnina, moře a ostrovy">
+      <canvas id="canvas" aria-label="Mapa pobřeží Tary"></canvas>
+      <div class="map-title"><span>CELÁ TARA · A+</span><small id="status">Načítám geometrii…</small></div>
+      <nav aria-label="Ovládání mapy"><button id="plus" aria-label="Přiblížit">+</button><button id="minus" aria-label="Oddálit">−</button><button id="fit" aria-label="Celý kontinent">⛶</button></nav>
+      <footer><span id="coords"></span><span>Tara a Dálavy: Jana Žižková · jih: pracovní podklad KO2c</span></footer>
+    </section>
+  </main>
+  <script src="viewer.js?v=20261113a1"></script>
+</body>
+</html>
