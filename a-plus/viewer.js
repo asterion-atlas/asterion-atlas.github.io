@@ -79,13 +79,14 @@ map.addEventListener('keydown',event=>{
 $('plus').onclick=()=>zoom(1.5);$('minus').onclick=()=>zoom(1/1.5);$('fit').onclick=fit;
 for(const id of ['land','sea'])$(id).onchange=()=>{schedule();share();};
 new ResizeObserver(resize).observe(map);
-fetch('geometry.json?v=20261113a1-approved-land',{cache:'no-cache'}).then(response=>{
+fetch('geometry.json?v=20261113a2-coast-and-south',{cache:'no-cache'}).then(response=>{
   if(!response.ok)throw Error(response.status);return response.json();
 }).then(geometry=>{
   if(geometry.schema!=='tara-a-plus/1'||geometry.stage!==1||geometry.features.some(f=>f.properties.layer!=='land'))throw Error('Nesprávná data základu A+');
   data=geometry;land=data.features.map(f=>({...f,path:pathFor(f.geometry)}));southernEdge=pathFor({type:'LineString',coordinates:data.unknown_southern_edge});
   canvas.dataset.geometryVersion=data.version;canvas.dataset.landHash=data.approval.land_features_sha256;
-  $('verification').textContent='184 částí pevniny a ostrovů · převzato beze změny obrysu.';
+  $('verification').textContent=data.display?.summary||`${data.features.length} částí pevniny a ostrovů · převzato beze změny obrysu.`;
+  if(data.display?.source_edge_note)$('source-edge-note').textContent=data.display.source_edge_note;
   fit();
   if(params.has('layers')){const enabled=new Set(params.get('layers').split(','));for(const id of ['land','sea'])$(id).checked=enabled.has(id);}
   const x=Number(params.get('x')),y=Number(params.get('y')),k=Number(params.get('zoom'));
