@@ -79,7 +79,7 @@ map.addEventListener('keydown',event=>{
 $('plus').onclick=()=>zoom(1.5);$('minus').onclick=()=>zoom(1/1.5);$('fit').onclick=fit;
 for(const id of ['land','sea'])$(id).onchange=()=>{schedule();share();};
 new ResizeObserver(resize).observe(map);
-fetch('geometry.json?v=20261113a7-ohnive-zatoka-tri',{cache:'no-cache'}).then(response=>{
+fetch('geometry.json?v=20261113a8-prirozene-jihozapadni-pobrezi',{cache:'no-cache'}).then(response=>{
   if(!response.ok)throw Error(response.status);return response.json();
 }).then(geometry=>{
   if(geometry.schema!=='tara-a-plus/1'||geometry.stage!==1||geometry.features.some(f=>f.properties.layer!=='land'))throw Error('Nesprávná data základu A+');
